@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">iGrocery</string>
+    <string name="button_label">Submit</string>
 </resources>
