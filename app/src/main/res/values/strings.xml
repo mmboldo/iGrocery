@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">iGrocery</string>
     <string name="button_label">Submit</string>
+    <string name="App_Title">iGrocery</string>
+    <string name="newItem">Add new item</string>
+    <string name="Add">Add</string>
+    <string name="Edit">Edit</string>
+    <string name="Delete">Delete</string>
 </resources>
