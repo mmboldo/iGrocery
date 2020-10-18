@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.154" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Add"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.15" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/newItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -57,19 +57,19 @@
         app:layout_constraintVertical_bias="0.105" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnEditItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Edit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/btnDeleteItem"
         app:layout_constraintHorizontal_bias="0.907"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/newItem"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.285" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnDeleteItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
