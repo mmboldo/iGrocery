@@ -6,4 +6,23 @@
     <string name="Add">Add</string>
     <string name="Edit">Edit</string>
     <string name="Delete">Delete</string>
+    <string name="storeMapTitle">Store Map</string>
+    <string name="storeMapGroceryBtn">Grocery</string>
+    <string name="storeMapCleaningBtn">Paper / Cleanning</string>
+    <string name="storeMapPetBtn">Pets</string>
+    <string name="storeMapEletroBtn">Eletronics</string>
+    <string name="storeMapToysBtn">Toys</string>
+    <string name="storeMapFreshBtn">Fresh / Meat</string>
+    <string name="storeMapBakeryBtn">Bakery / Deli</string>
+    <string name="storeMapApparelBtn">Apparel\n\nClothes\n\nBaby</string>
+    <string name="storeMapOfficeBtn">Office Supply</string>
+    <string name="storeMapPartyBtn">Party / Craft Supply</string>
+    <string name="storeMapHomeBtn">Home / Decor</string>
+    <string name="storeMapAutoBtn">Auto Care</string>
+    <string name="storeMapSportBtn">Sporting Goods</string>
+    <string name="storeMapCosmBtn">Cosmetics</string>
+    <string name="storeMapHealthBtn">Health / Beauty</string>
+    <string name="storeMapPharmBtn">Pharmacy</string>
+    <string name="storeMapCheckOutBtn">Check Out</string>
+
 </resources>
