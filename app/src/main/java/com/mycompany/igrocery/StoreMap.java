@@ -1,58 +1,88 @@
 package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class StoreMap extends AppCompatActivity {
 
-    Button storeMapFreshBtn, storeMapGroceryBtn, storeMapCleaningBtn, storeMapPetsBtn, storeMapEletroBtn,
-            storeMapToysBtn, storeMapBakeryBtn, storeMapApparelBtn, storeMapOfficeBtn, storeMapPartyBtn,
-            storeMapHomeBtn, storeMapAutoBtn, storeMapSportBtn, storeMapCosmBtn, storeMapHealthBtn,
-            storeMapPharmBtn, storeMapCheckOutBtn;
+    List<String> StoreNames = new ArrayList<>(Arrays.asList("Choose a Store", "Save On Foods", "Walmart", "Whole Foods"));
+    List<Integer> StorePics = new ArrayList<>(Arrays.asList(R.drawable.saveonfoods,R.drawable.saveonfoods, R.drawable.saveonfoods,
+            R.drawable.saveonfoods));
+
+    //list of names and pictures combined
+    List<Stores> EmptyStoreList = new ArrayList<>();
+    List<Stores> AllStores = new ArrayList<>();
+    List<Stores> SaveOnFoods = new ArrayList<>();
+    List<Stores> WalmartStore = new ArrayList<>();
+    List<Stores> WholeFoods = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_map);
-        //id each btn
-        storeMapBakeryBtn = (Button) findViewById(R.id.storeMapBakeryBtn);
-        storeMapFreshBtn = (Button) findViewById(R.id.storeMapFreshBtn);
-        storeMapGroceryBtn = (Button) findViewById(R.id.storeMapGroceryBtn);
-        storeMapCleaningBtn = (Button) findViewById(R.id.storeMapCleaningBtn);
-        storeMapPetsBtn = (Button) findViewById(R.id.storeMapPetBtn);
-        storeMapEletroBtn = (Button) findViewById(R.id.storeMapEletroBtn);
-        storeMapToysBtn = (Button) findViewById(R.id.storeMapToysBtn);
-        storeMapApparelBtn = (Button) findViewById(R.id.storeMapApparelBtn);
-        storeMapOfficeBtn = (Button) findViewById(R.id.storeMapOfficeBtn);
-        storeMapPartyBtn = (Button) findViewById(R.id.storeMapPartyBtn);
-        storeMapHomeBtn = (Button) findViewById(R.id.storeMapHomeBtn);
-        storeMapAutoBtn = (Button) findViewById(R.id.storeMapAutoBtn);
-        storeMapSportBtn = (Button) findViewById(R.id.storeMapSportBtn);
-        storeMapCosmBtn = (Button) findViewById(R.id.storeMapCosmBtn);
-        storeMapHealthBtn = (Button) findViewById(R.id.storeMapHealthBtn);
-        storeMapPharmBtn = (Button) findViewById(R.id.storeMapPharmBtn);
-        storeMapCheckOutBtn = (Button) findViewById(R.id.storeMapCheckOutBtn);
+        setContentView(R.layout.activity_main);
 
-        //set btn colors
-        storeMapBakeryBtn.setBackgroundColor(Color.parseColor("#999900"));
-        storeMapFreshBtn.setBackgroundColor(Color.parseColor("#00FF7F"));
-        storeMapGroceryBtn.setBackgroundColor(Color.parseColor("#228B22"));
-        storeMapCleaningBtn.setBackgroundColor(Color.parseColor("#87CEFA"));
-        storeMapPetsBtn.setBackgroundColor((Color.parseColor("#A52A2A")));
-        storeMapEletroBtn.setBackgroundColor((Color.parseColor("#1E90FF")));
-        storeMapToysBtn.setBackgroundColor((Color.parseColor("#FF1493")));
-        storeMapApparelBtn.setBackgroundColor((Color.parseColor("#1E90FF")));
-        storeMapOfficeBtn.setBackgroundColor((Color.parseColor("#6495ED")));
-        storeMapPartyBtn.setBackgroundColor((Color.parseColor("#4682B4")));
-        storeMapHomeBtn.setBackgroundColor((Color.parseColor("#4169E1")));
-        storeMapAutoBtn.setBackgroundColor((Color.parseColor("#5F9EA0")));
-        storeMapSportBtn.setBackgroundColor((Color.parseColor("#20B2AA")));
-        storeMapCosmBtn.setBackgroundColor((Color.parseColor("#FF7F50")));
-        storeMapHealthBtn.setBackgroundColor((Color.parseColor("#FF6347")));
-        storeMapPharmBtn.setBackgroundColor((Color.parseColor("#DDA0DD")));
-        storeMapCheckOutBtn.setBackgroundColor((Color.parseColor("#A9A9A9")));
+        AddData();
+
+        Spinner spinner = findViewById(R.id.storesSpinner);
+        ArrayAdapter<Stores> adapter = new ArrayAdapter<Stores>(this, android.R.layout.simple_spinner_item, AllStores);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        final RecyclerView recyclerView = findViewById(R.id.recycleViewMap);
+
+        //set the grid of the RecycleView
+        GridLayoutManager gm = new GridLayoutManager(this,1);
+        recyclerView.setLayoutManager(gm);
+        final StoresAdapter myStoreAdapter = new StoresAdapter(EmptyStoreList, this);
+        recyclerView.setAdapter(myStoreAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (spinner.getSelectedItemPosition()) {
+                    case 0:
+                        break;
+                    case 1:
+                        myStoreAdapter.ChangeData(SaveOnFoods);
+                        break;
+                    case 2:
+                        myStoreAdapter.ChangeData(WalmartStore);
+                        break;
+                    case 3:
+                        myStoreAdapter.ChangeData(WholeFoods);
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    //method to add name and picture into arraylist
+    private void AddData() {
+        for(int i = 0; i < StoreNames.size(); i++) {
+            Stores eachStore = new Stores(StoreNames.get(i), StorePics.get(i));
+            AllStores.add(eachStore);
+        }
+        SaveOnFoods = AllStores.subList(1, 2);
+        WalmartStore = AllStores.subList(2, 3);
+        WholeFoods = AllStores.subList(3, 4);
+
     }
 }
