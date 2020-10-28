@@ -32,12 +32,12 @@ public class StoreMap extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_store_map);
 
         AddData();
 
         Spinner spinner = findViewById(R.id.storesSpinner);
-        ArrayAdapter<Stores> adapter = new ArrayAdapter<Stores>(this, android.R.layout.simple_spinner_item, AllStores);
+        ArrayAdapter<Stores> adapter = new ArrayAdapter<Stores>(StoreMap.this, android.R.layout.simple_spinner_item, AllStores);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 

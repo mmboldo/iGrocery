@@ -8,6 +8,13 @@
     <string name="Delete">Delete</string>
     <string name="storeMapTitle">Store Map</string>
     <string name="btnShowMap">Show Aisles</string>
+    <string name="loginTitle">Hello, Already have an Account? </string>
+    <string name="forgetPass">FORGET PASSWORD? </string>
+    <string name="loginBtn">Login </string>
+    <string name="SignUpBtn">New? Signup </string>
+    <string name="registrationTitle">Welcome, please register to iGrocery? </string>
+    <string name="alreadRegisteredBtn">Alread has an Account</string>
+    <string name="addAddress">Add your Address</string>
 
 
 </resources>
