@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "156445883601",
+    "firebase_url": "https://igrocery-52176.firebaseio.com",
+    "project_id": "igrocery-52176",
+    "storage_bucket": "igrocery-52176.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156445883601:android:716878520306cf66c199f0",
+        "android_client_info": {
+          "package_name": "com.mycompany.igrocery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156445883601-irphno95uspp1eqv2gfq2mrc5dru94j7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCXlmQy3ry3LF0SbAcAw-h15G8KV6h5no"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156445883601-irphno95uspp1eqv2gfq2mrc5dru94j7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
