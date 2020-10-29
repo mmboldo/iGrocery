@@ -15,6 +15,10 @@
     <string name="registrationTitle">Welcome, please register to iGrocery? </string>
     <string name="alreadRegisteredBtn">Alread has an Account</string>
     <string name="addAddress">Add your Address</string>
-
-
+    <string name="registerBtn">Register</string>
+    <string name="emailError">Please enter a valid email.</string>
+    <string name="requiredMsg">Required</string>
+    <string name="passError">Enter a valid password with min 6 characters.</string>
+    <string name="passErrorConfir">Password does not match.</string>
+    <string name="loginError">Something wrong. Please, check your email and Password.</string>
 </resources>
