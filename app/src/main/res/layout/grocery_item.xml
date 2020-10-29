@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/bggroceryitem"
+    android:layout_marginBottom="20dp"
+    android:orientation="horizontal"
+    android:layout_height="100dp">
+
+    <LinearLayout
+        android:layout_width="274dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/itemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="Rice"
+            android:textColor="#228B22"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/itemDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Rice type A"
+            android:textColor="#ADADAD"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/itemQuantity"
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="1kg"
+            android:textAlignment="center"
+            android:textColor="#228B22"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
