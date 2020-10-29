@@ -31,13 +31,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleStoreMapTV" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleViewMap"
-        android:layout_width="366dp"
-        android:layout_height="479dp"
-        android:layout_gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/storesSpinner" />
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewMap"
+            android:layout_width="366dp"
+            android:layout_height="479dp"
+            android:layout_gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/storesSpinner" />
+    </ScrollView>
 </LinearLayout>
