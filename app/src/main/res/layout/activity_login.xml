@@ -14,7 +14,7 @@
         android:layout_height="100dp"
         android:src="@drawable/logo"/>
     <TextView
-        android:id="@+id/loginTitle"
+        android:id="@+id/shareListTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/loginTitle"
@@ -28,7 +28,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/emailInputLayout"
+            android:id="@+id/nameInputLayout"
             android:hint="Email"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
@@ -57,7 +57,7 @@
             android:text="@string/forgetPass"
             android:textColor="#4D4D4D" />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/loginBtn"
+            android:id="@+id/saveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#66CD00"
@@ -91,7 +91,11 @@
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/btnMock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 
 
 </LinearLayout>

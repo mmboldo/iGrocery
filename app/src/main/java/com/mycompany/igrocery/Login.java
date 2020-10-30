@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -37,20 +36,30 @@ public class Login extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         //find the ids
-        emailLayout = (TextInputLayout) findViewById(R.id.emailInputLayout);
+        emailLayout = (TextInputLayout) findViewById(R.id.nameInputLayout);
         passLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
         emailInput = (TextInputEditText) findViewById(R.id.email);
         passInput = (TextInputEditText) findViewById(R.id.password);
-        loginBtn = (AppCompatButton)findViewById(R.id.loginBtn);
+        loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         goToStoreMap = (AppCompatButton) findViewById(R.id.tempBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        Button btnMock = (Button)findViewById(R.id.btnMock);
 
         //Go to new User Registration
         newUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Login.this, Register.class);
+                startActivity(myIntent);
+            }
+        });
+
+        btnMock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Login.this, ShareList.class);
                 startActivity(myIntent);
             }
         });

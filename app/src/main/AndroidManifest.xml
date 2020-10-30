@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IGrocery">
         <activity android:name=".ShareList"></activity>
+        <activity android:name=".StoreSelection"/>
         <activity android:name=".AddGroceryItem" />
         <activity android:name=".CreateList" />
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".Splash">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
