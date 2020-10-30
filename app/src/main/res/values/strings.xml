@@ -22,4 +22,5 @@
     <string name="passErrorConfir">Password does not match.</string>
     <string name="loginError">Something wrong. Please, check your email and Password.</string>
     <string name="groceryList">Grocery List</string>
+    <string name="newGroceryItem">Add a new item</string>
 </resources>
