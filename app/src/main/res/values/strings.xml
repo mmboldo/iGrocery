@@ -23,6 +23,7 @@
     <string name="loginError">Something wrong. Please, check your email and Password.</string>
     <string name="groceryList">Grocery List</string>
     <string name="SelectStore">Select your favorite grocery store</string>
+    <string name="ShareList">Share your list</string>
 
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
