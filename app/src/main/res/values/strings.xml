@@ -22,4 +22,11 @@
     <string name="passErrorConfir">Password does not match.</string>
     <string name="loginError">Something wrong. Please, check your email and Password.</string>
     <string name="groceryList">Grocery List</string>
+    <string name="SelectStore">Select your favorite grocery store</string>
+
+    <string-array name="store_names">
+        <item>Real Canadian Superstore</item>
+        <item>Save on Foods</item>
+        <item>Walmart</item>
+    </string-array>
 </resources>
