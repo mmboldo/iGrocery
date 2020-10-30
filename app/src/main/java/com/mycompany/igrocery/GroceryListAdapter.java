@@ -34,8 +34,6 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         holder.itemQuantity.setText(GroceryList.get(position).getItemQuantity());
     }
 
-
-
     @Override
     public int getItemCount() {
         return GroceryList.size();
