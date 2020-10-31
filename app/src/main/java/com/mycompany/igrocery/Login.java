@@ -45,21 +45,11 @@ public class Login extends AppCompatActivity {
         goToStoreMap = (AppCompatButton) findViewById(R.id.tempBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-        Button btnMock = (Button)findViewById(R.id.btnMock);
-
         //Go to new User Registration
         newUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(Login.this, Register.class);
-                startActivity(myIntent);
-            }
-        });
-
-        btnMock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Login.this, ShareList.class);
                 startActivity(myIntent);
             }
         });
