@@ -45,6 +45,9 @@ public class Login extends AppCompatActivity {
         goToStoreMap = (AppCompatButton) findViewById(R.id.tempBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
+        //temp button only for test
+
+
         //Go to new User Registration
         newUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +73,7 @@ public class Login extends AppCompatActivity {
                 loginForm();
             }
         });
+
 
     }
 
