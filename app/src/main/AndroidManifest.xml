@@ -39,11 +39,6 @@
         </activity>
         <activity android:name=".StoreMap" />
         <activity android:name=".EditListItem" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
