@@ -29,6 +29,7 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="save">save</string>
+    <string name="goToStoreSelection">Select Store</string>
 
 
     <string-array name="store_names">
