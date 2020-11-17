@@ -30,7 +30,6 @@
     <string name="password">Password</string>
     <string name="save">save</string>
 
-
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
         <item>Save on Foods</item>

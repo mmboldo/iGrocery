@@ -23,25 +23,20 @@
 
     <Spinner
         android:id="@+id/storesSpinner"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="364dp"
+        android:layout_height="49dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#FFFFFF"
+        android:entries="@array/store_names"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleStoreMapTV" />
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewMap"
-            android:layout_width="366dp"
-            android:layout_height="479dp"
-            android:layout_gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/storesSpinner" />
-    </ScrollView>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/greenIGrocery"
+        android:text="OK" />
+
 </LinearLayout>

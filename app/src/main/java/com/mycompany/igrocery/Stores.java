@@ -3,12 +3,42 @@ package com.mycompany.igrocery;
 import androidx.annotation.NonNull;
 
 public class Stores {
-    String storeName;
-    int storePic;
+    private int id;
+    private String storePicName;
+    private int storePicDrawable;
+    private String storeName;
+    private String storeAddress;
 
-    public Stores(String storeName, int storePic) {
+    public Stores(int id, String storePicName, int storePicDrawable, String storeName, String storeAddress) {
+        this.id = id;
+        this.storePicName = storePicName;
+        this.storePicDrawable = storePicDrawable;
         this.storeName = storeName;
-        this.storePic = storePic;
+        this.storeAddress = storeAddress;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getStorePicName() {
+        return storePicName;
+    }
+
+    public void setStorePicName(String storePicName) {
+        this.storePicName = storePicName;
+    }
+
+    public int getStorePicDrawable() {
+        return storePicDrawable;
+    }
+
+    public void setStorePicDrawable(int storePicDrawable) {
+        this.storePicDrawable = storePicDrawable;
     }
 
     public String getStoreName() {
@@ -19,12 +49,12 @@ public class Stores {
         this.storeName = storeName;
     }
 
-    public int getStorePic() {
-        return storePic;
+    public String getStoreAddress() {
+        return storeAddress;
     }
 
-    public void setStorePic(int storePic) {
-        this.storePic = storePic;
+    public void setStoreAddress(String storeAddress) {
+        this.storeAddress = storeAddress;
     }
 
     @NonNull
