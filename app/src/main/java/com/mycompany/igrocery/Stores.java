@@ -8,13 +8,18 @@ public class Stores {
     private int storePicDrawable;
     private String storeName;
     private String storeAddress;
+    private String storePicMapName;
+    private int storePicMapDrawable;
 
-    public Stores(int id, String storePicName, int storePicDrawable, String storeName, String storeAddress) {
+    public Stores(int id, String storePicName, int storePicDrawable, String storeName,
+                  String storeAddress, String storePicMapName, int storePicMapDrawable) {
         this.id = id;
         this.storePicName = storePicName;
         this.storePicDrawable = storePicDrawable;
         this.storeName = storeName;
         this.storeAddress = storeAddress;
+        this.storePicMapName = storePicMapName;
+        this.storePicMapDrawable = storePicMapDrawable;
     }
 
     public int getId() {
@@ -55,6 +60,22 @@ public class Stores {
 
     public void setStoreAddress(String storeAddress) {
         this.storeAddress = storeAddress;
+    }
+
+    public String getStorePicMapName() {
+        return storePicMapName;
+    }
+
+    public void setStorePicMapName(String storePicMapName) {
+        this.storePicMapName = storePicMapName;
+    }
+
+    public int getStorePicMapDrawable() {
+        return storePicMapDrawable;
+    }
+
+    public void setStorePicMapDrawable(int storePicMapDrawable) {
+        this.storePicMapDrawable = storePicMapDrawable;
     }
 
     @NonNull

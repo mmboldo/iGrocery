@@ -32,11 +32,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleStoreMapTV" />
 
-    <Button
-        android:id="@+id/button3"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/seeMapStoreBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/greenIGrocery"
-        android:text="OK" />
+        android:background="#66CD00"
+        android:elevation="0dp"
+        android:text="@string/seeMapStoreBtn"
+        android:textColor="#4D4D4D" />
+
+    <ImageView
+        android:id="@+id/storeMapIV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/avatars" />
 
 </LinearLayout>

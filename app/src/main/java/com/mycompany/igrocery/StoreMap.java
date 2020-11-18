@@ -2,9 +2,16 @@ package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,6 +35,27 @@ public class StoreMap extends AppCompatActivity {
         Spinner spinner = findViewById(R.id.storesSpinner);
         spinner.setAdapter(new StoresAdapter(StoreList));
 
+        Button seeMap = (Button) findViewById(R.id.seeMapStoreBtn);
+        seeMap.setBackgroundColor(Color.parseColor("#66CD00"));
+        seeMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int selectedItem = spinner.getSelectedItemPosition();
+
+                ImageView imageViewMap = findViewById(R.id.storeMapIV);
+
+                if(selectedItem == 0) {
+                    imageViewMap.setImageResource(R.drawable.saveonfoodsmap);
+                }
+                if(selectedItem == 1) {
+                    imageViewMap.setImageResource(R.drawable.walmartmap);
+                }
+                if(selectedItem == 2) {
+                    imageViewMap.setImageResource(R.drawable.superstoremap);
+                }
+            }
+        });
+
     }
 
     private List<Stores> ReadFile() {
@@ -48,8 +76,11 @@ public class StoreMap extends AppCompatActivity {
                 int storeDrawable = getResources().getIdentifier(storePicName, "drawable", getPackageName());
                 String storeName = row[2];
                 String storeAddress = row[3];
+                String storeMapPicName = row[4];
+                int storeMapDrawable = getResources().getIdentifier(storeMapPicName, "drawable", getPackageName());
 
-                Stores eachStore = new Stores(id, storePicName, storeDrawable, storeName, storeAddress);
+                Stores eachStore = new Stores(id, storePicName, storeDrawable, storeName, storeAddress, storeMapPicName, storeMapDrawable);
+                ListOfStores.add(eachStore);
             }
         } catch (Exception ex) {
             Log.d("FILELOG", ex.getMessage() + "File Process error");

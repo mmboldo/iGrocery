@@ -1,4 +1,4 @@
-StoreId,StorePicName,StoreName,StoreAddress
-1,saveonfoods,Save On Foods,aaaa
-2,walmart,Walmart,bbbb
-3,superstore,Real Canadian Superstore,cccc
+StoreId,StorePicName,StoreName,StoreAddress,StoreMapPicName
+1,saveonfoods,Save On Foods,aaaa,saveonfoodsmap
+2,walmart,Walmart,bbbb,walmartmap
+3,superstore,Real Canadian Superstore,cccc,superstoremap
