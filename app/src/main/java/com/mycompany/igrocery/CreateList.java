@@ -124,6 +124,9 @@ public class CreateList extends AppCompatActivity {
     public void ClickLogout(View view){
         logout(this);
     }
+    public void ClickSelectStore(View view){
+        redirectActivity(this, StoreSelection.class);
+    }
 
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
