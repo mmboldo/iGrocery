@@ -22,7 +22,7 @@
     <string name="passErrorConfir">Password does not match.</string>
     <string name="loginError">Something wrong. Please, check your email and Password.</string>
     <string name="groceryList">Grocery List</string>
-    <string name="SelectStore">Select your favorite grocery store</string>
+    <string name="SelectStore">Select a grocery store</string>
     <string name="newGroceryItem">Add a new item</string>
     <string name="ShareList">Share your list</string>
     <string name="name">Name</string>
