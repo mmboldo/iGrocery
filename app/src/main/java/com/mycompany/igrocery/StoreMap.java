@@ -1,8 +1,9 @@
 package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,15 +11,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.mycompany.igrocery.R.id.storesSpinner;
 
 public class StoreMap extends AppCompatActivity {
 
@@ -37,21 +36,30 @@ public class StoreMap extends AppCompatActivity {
 
         Button seeMap = (Button) findViewById(R.id.seeMapStoreBtn);
         seeMap.setBackgroundColor(Color.parseColor("#66CD00"));
+
+        ImageView imageViewMap = findViewById(R.id.storeMapIV);
         seeMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int selectedItem = spinner.getSelectedItemPosition();
 
-                ImageView imageViewMap = findViewById(R.id.storeMapIV);
-
                 if(selectedItem == 0) {
                     imageViewMap.setImageResource(R.drawable.saveonfoodsmap);
+                    Toast.makeText(getBaseContext(), "Click on the map to see details", Toast.LENGTH_LONG).show();
+                    imageViewMap.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            displayFragment();
+                        }
+                    });
                 }
                 if(selectedItem == 1) {
                     imageViewMap.setImageResource(R.drawable.walmartmap);
+                    Toast.makeText(getApplicationContext(), "Click on the map to see details", Toast.LENGTH_LONG).show();
                 }
                 if(selectedItem == 2) {
                     imageViewMap.setImageResource(R.drawable.superstoremap);
+                    Toast.makeText(getBaseContext(), "Click on the map to see details", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -87,4 +95,16 @@ public class StoreMap extends AppCompatActivity {
         }
         return ListOfStores;
     }
+
+    public void displayFragment() {
+        //it is possible to send information from activity to the fragment,
+        // send it as a parameter of newInstance()
+        StoreMapFragment storeMapFragment = StoreMapFragment.newInstance();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, storeMapFragment).addToBackStack(null).commit();
+    }
+
+
 }
