@@ -82,16 +82,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnGoToStoreSelection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#66CD00"
-            android:elevation="0dp"
-            android:layout_margin="20dp"
-            android:text="@string/goToStoreSelection"
-            android:textColor="#4D4D4D" />
-
     </LinearLayout>
 
     <RelativeLayout
