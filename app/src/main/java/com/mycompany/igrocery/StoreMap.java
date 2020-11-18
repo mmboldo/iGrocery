@@ -1,88 +1,90 @@
 package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import static com.mycompany.igrocery.R.id.storesSpinner;
 
 public class StoreMap extends AppCompatActivity {
 
-    List<String> StoreNames = new ArrayList<>(Arrays.asList("Choose a Store", "Save On Foods", "Walmart", "Whole Foods"));
-    List<Integer> StorePics = new ArrayList<>(Arrays.asList(R.drawable.saveonfoods,R.drawable.saveonfoods, R.drawable.saveonfoods,
-            R.drawable.saveonfoods));
-
-    //list of names and pictures combined
-    List<Stores> EmptyStoreList = new ArrayList<>();
-    List<Stores> AllStores = new ArrayList<>();
-    List<Stores> SaveOnFoods = new ArrayList<>();
-    List<Stores> WalmartStore = new ArrayList<>();
-    List<Stores> WholeFoods = new ArrayList<>();
+    List<Stores> StoreList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_map);
 
-        AddData();
+        StoreList = ReadFile();
+        Log.d("FILELOG", StoreList.size() + " stores on the file.");
 
         Spinner spinner = findViewById(R.id.storesSpinner);
-        ArrayAdapter<Stores> adapter = new ArrayAdapter<Stores>(StoreMap.this, android.R.layout.simple_spinner_item, AllStores);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinner.setAdapter(new StoresAdapter(StoreList));
 
-        final RecyclerView recyclerView = findViewById(R.id.recycleViewMap);
-
-        //set the grid of the RecycleView
-        GridLayoutManager gm = new GridLayoutManager(this,1);
-        recyclerView.setLayoutManager(gm);
-        final StoresAdapter myStoreAdapter = new StoresAdapter(EmptyStoreList, this);
-        recyclerView.setAdapter(myStoreAdapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        Button seeMap = (Button) findViewById(R.id.seeMapStoreBtn);
+        seeMap.setBackgroundColor(Color.parseColor("#66CD00"));
+        seeMap.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (spinner.getSelectedItemPosition()) {
-                    case 0:
-                        break;
-                    case 1:
-                        myStoreAdapter.ChangeData(SaveOnFoods);
-                        break;
-                    case 2:
-                        myStoreAdapter.ChangeData(WalmartStore);
-                        break;
-                    case 3:
-                        myStoreAdapter.ChangeData(WholeFoods);
-                        break;
+            public void onClick(View v) {
+                int selectedItem = spinner.getSelectedItemPosition();
+
+                ImageView imageViewMap = findViewById(R.id.storeMapIV);
+
+                if(selectedItem == 0) {
+                    imageViewMap.setImageResource(R.drawable.saveonfoodsmap);
+                }
+                if(selectedItem == 1) {
+                    imageViewMap.setImageResource(R.drawable.walmartmap);
+                }
+                if(selectedItem == 2) {
+                    imageViewMap.setImageResource(R.drawable.superstoremap);
                 }
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
         });
+
     }
 
-    //method to add name and picture into arraylist
-    private void AddData() {
-        for(int i = 0; i < StoreNames.size(); i++) {
-            Stores eachStore = new Stores(StoreNames.get(i), StorePics.get(i));
-            AllStores.add(eachStore);
-        }
-        SaveOnFoods = AllStores.subList(1, 2);
-        WalmartStore = AllStores.subList(2, 3);
-        WholeFoods = AllStores.subList(3, 4);
+    private List<Stores> ReadFile() {
+        List<Stores> ListOfStores = new ArrayList<>();
 
+        InputStream inputStream = getResources().openRawResource(R.raw.storeinfo);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+        try {
+            String csvLine;
+            if((csvLine = reader.readLine()) != null) {
+
+            }
+            while ((csvLine = reader.readLine()) != null) {
+                String[] row = csvLine.split(",");
+                int id = Integer.parseInt(row[0]);
+                String storePicName = row[1];
+                int storeDrawable = getResources().getIdentifier(storePicName, "drawable", getPackageName());
+                String storeName = row[2];
+                String storeAddress = row[3];
+                String storeMapPicName = row[4];
+                int storeMapDrawable = getResources().getIdentifier(storeMapPicName, "drawable", getPackageName());
+
+                Stores eachStore = new Stores(id, storePicName, storeDrawable, storeName, storeAddress, storeMapPicName, storeMapDrawable);
+                ListOfStores.add(eachStore);
+            }
+        } catch (Exception ex) {
+            Log.d("FILELOG", ex.getMessage() + "File Process error");
+        }
+        return ListOfStores;
     }
 }
