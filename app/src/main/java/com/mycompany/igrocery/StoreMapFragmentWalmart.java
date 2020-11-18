@@ -2,21 +2,19 @@ package com.mycompany.igrocery;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link StoreMapFragment#newInstance} factory method to
+ * Use the {@link StoreMapFragmentWalmart#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StoreMapFragment extends Fragment {
+public class StoreMapFragmentWalmart extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +25,7 @@ public class StoreMapFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public StoreMapFragment() {
+    public StoreMapFragmentWalmart() {
         // Required empty public constructor
     }
 
@@ -40,8 +38,8 @@ public class StoreMapFragment extends Fragment {
      * @return A new instance of fragment StoreMapFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StoreMapFragment newInstance(String param1, String param2) {
-        StoreMapFragment fragment = new StoreMapFragment();
+    public static StoreMapFragmentWalmart newInstance(String param1, String param2) {
+        StoreMapFragmentWalmart fragment = new StoreMapFragmentWalmart();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -49,8 +47,8 @@ public class StoreMapFragment extends Fragment {
         return fragment;
     }
 
-    public static StoreMapFragment newInstance() {
-        return new StoreMapFragment();
+    public static StoreMapFragmentWalmart newInstance() {
+        return new StoreMapFragmentWalmart();
     }
 
     @Override
@@ -67,7 +65,7 @@ public class StoreMapFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_store_map, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_store_map_walmart, container, false);
 
         return rootView;
     }

@@ -56,8 +56,12 @@
     <string name="garden">GARDEN &amp; SEASONAL</string>
     <string name="checkout">CHECK OUT</string>
     <string name="seafood">SEAFOOD</string>
-    <string name="coffee">COFFEE</string>
+    <string name="cafe">CAFÉ</string>
     <string name="grocery">GROCERY</string>
     <string name="exception_message">Error occur</string>
+    <string name="close">CLOSE</string>
+    <string name="walmart">Walmart - Aisle Details</string>
+    <string name="saveonfoods">Save On Foods - Aisle Details</string>
+    <string name="superstore">Real Canadian Superstore - Aisle Details</string>
 
 </resources>

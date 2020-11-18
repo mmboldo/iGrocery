@@ -9,16 +9,6 @@
     tools:context=".StoreMap"
     android:padding="20dp">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout="@layout/fragment_store_map" />
-
     <ImageView
         android:id="@+id/logoIV"
         android:layout_width="150dp"
@@ -45,23 +35,12 @@
         android:id="@+id/storesSpinner"
         android:layout_width="364dp"
         android:layout_height="49dp"
+        android:layout_marginTop="8dp"
         android:entries="@array/store_names"
         android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registrationTitle" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/seeMapStoreBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#66CD00"
-        android:elevation="0dp"
-        android:text="@string/seeMapStoreBtn"
-        android:textColor="#4D4D4D"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/storesSpinner" />
 
     <ImageView
         android:id="@+id/storeMapIV"
@@ -69,10 +48,36 @@
         android:layout_height="400dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seeMapStoreBtn"
-        app:layout_constraintVertical_bias="0.08"
+        app:layout_constraintTop_toBottomOf="@+id/storesSpinner"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_store_map" />
+    <FrameLayout
+        android:id="@+id/fragment_container_walmart"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_store_map_walmart" />
+    <FrameLayout
+        android:id="@+id/fragment_container_superstore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/fragment_store_map_superstore" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

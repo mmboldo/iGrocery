@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="0dp"
     android:orientation="horizontal"
-    tools:context=".StoreMapFragment">
+    tools:context=".StoreMapFragmentSuperstore">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -19,12 +19,12 @@
         android:paddingBottom="20dp">
 
         <TextView
-            android:id="@+id/titleMapSaveOnFoods"
+            android:id="@+id/titleMapSS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/saveonfoods"
+            android:text="@string/superstore"
             android:textAlignment="center"
             android:textSize="24sp" />
 
@@ -35,19 +35,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/pharmacySOFColor"
+                android:id="@+id/floristSSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#00B0F0" />
+                android:background="#EE1A98" />
 
             <TextView
-                android:id="@+id/pharmacySOFtxtView"
+                android:id="@+id/floristSStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="20dp"
-                android:text="@string/pharmacy"
+                android:text="@string/florist"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -58,152 +58,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/deliSOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#EE82EE" />
-
-            <TextView
-                android:id="@+id/deliSOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/deli"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/bakerySOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#BF9000" />
-
-            <TextView
-                android:id="@+id/bakerySOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/bakery"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/dairySOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#FFC000" />
-
-            <TextView
-                android:id="@+id/dairySOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/dairy"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/meatSOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#C00000" />
-
-            <TextView
-                android:id="@+id/meatSOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/meat"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/seafoodSOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#8FAADC" />
-
-            <TextView
-                android:id="@+id/seafoodSOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/seafood"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/bulkSOFColor"
-                android:layout_width="10dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#A9D18E" />
-
-            <TextView
-                android:id="@+id/bulkSOFtxtView"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="20dp"
-                android:text="@string/bulk"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/produceSOFColor"
+                android:id="@+id/produceSSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#00B050" />
 
             <TextView
-                android:id="@+id/produceSOFtxtView"
+                android:id="@+id/produceSStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -219,14 +81,152 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/grocerySOFColor"
+                android:id="@+id/bulkSSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#A9D18E" />
+
+            <TextView
+                android:id="@+id/bulkSStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/bulk"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/seafoodSSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#8FAADC" />
+
+            <TextView
+                android:id="@+id/seafoodSStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/seafood"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/meatSSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#C00000" />
+
+            <TextView
+                android:id="@+id/meatSStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/meat"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dairySSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFC000" />
+
+            <TextView
+                android:id="@+id/dairySStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/dairy"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/bakerySSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#BF9000" />
+
+            <TextView
+                android:id="@+id/bakerySStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/bakery"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/deliSSColor"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#EE82EE" />
+
+            <TextView
+                android:id="@+id/deliSStxtView"
+                android:layout_width="232dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="20dp"
+                android:text="@string/deli"
+                android:textSize="20dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/grocerySSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#D0CECE" />
 
             <TextView
-                android:id="@+id/grocerySOFtxtView"
+                android:id="@+id/grocerySStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -243,14 +243,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/bathSOFColor"
+                android:id="@+id/bathSSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#DAE3F3" />
 
             <TextView
-                android:id="@+id/bathSOFtxtView"
+                android:id="@+id/bathSStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -266,19 +266,19 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/floristSOFColor"
+                android:id="@+id/cafeSSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#EE1A98" />
+                android:background="#595959" />
 
             <TextView
-                android:id="@+id/floristSOFtxtView"
+                android:id="@+id/cafeSStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="20dp"
-                android:text="@string/florist"
+                android:text="@string/cafe"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -289,14 +289,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/checkoutSOFColor"
+                android:id="@+id/checkoutSSColor"
                 android:layout_width="10dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#E7E6E6" />
 
             <TextView
-                android:id="@+id/checkoutSOFtxtView"
+                android:id="@+id/checkoutSStxtView"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -304,6 +304,9 @@
                 android:text="@string/checkout"
                 android:textSize="20dp" />
         </LinearLayout>
+
+
+
 
     </LinearLayout>
 
