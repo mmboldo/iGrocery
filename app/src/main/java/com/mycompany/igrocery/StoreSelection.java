@@ -15,12 +15,24 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+
+import com.mycompany.igrocery.stores.SaveOnFoods;
+import com.mycompany.igrocery.stores.Superstore;
+import com.mycompany.igrocery.stores.Walmart;
 
 public class StoreSelection extends AppCompatActivity {
 
     RecyclerView recyclerView;
     String s1[];
     int images[] = {R.drawable.superstore_logo, R.drawable.saveonfoods_logo, R.drawable.walmart_logo};
+
+    Superstore superstore = new Superstore();
+    SaveOnFoods saveOnFoods = new SaveOnFoods();
+    Walmart walmart = new Walmart();
+    ImageView ivSuperstore = findViewById(R.id.ivSuperstore);
+
+
     DrawerLayout drawerLayout;
 
     @Override
@@ -30,13 +42,17 @@ public class StoreSelection extends AppCompatActivity {
 
 
 
+
+
+
         //Drawer Navigation
         drawerLayout = findViewById(R.id.drawer_layout);
+    }
 
-
-
-
-
+    //method for clicking on image
+    public void supersotreClicked(View view){
+        Intent intent = new Intent(this, EditListItem.class);
+        startActivity(intent);
     }
 
 

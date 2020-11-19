@@ -36,7 +36,8 @@
             android:layout_width="50dp"
             android:layout_gravity="left"
             android:layout_weight="1"
-            app:srcCompat="@drawable/superstore_logo" />
+            app:srcCompat="@drawable/superstore_logo"
+            android:onClick="supersotreClicked"/>
 
         <TextView
             android:id="@+id/tvSuperstore"
