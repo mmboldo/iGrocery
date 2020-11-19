@@ -31,6 +31,9 @@
     <string name="save">save</string>
     <string name="seeMapStoreBtn">See Map</string>
     <string name="goToStoreSelection">Select Store</string>
+    <string name="superstore">Real Canadian Superstore</string>
+    <string name="saveonfoods">Save on Foods</string>
+    <string name="walmart">Walmart</string>
 
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
