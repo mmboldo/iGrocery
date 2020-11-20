@@ -1,7 +1,7 @@
 package com.mycompany.igrocery;
 
 public class Events {
-    String EVENT, TIME, DATE, MONTH, YEAR;
+    String EVENT, TIME, DATE, MONTH, YEAR, user;
 
     public Events(String EVENT, String TIME, String DATE, String MONTH, String YEAR) {
         this.EVENT = EVENT;
@@ -9,7 +9,16 @@ public class Events {
         this.DATE = DATE;
         this.MONTH = MONTH;
         this.YEAR = YEAR;
+//        this.user = user;
     }
+//
+//    public String getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(String user) {
+//        this.user = user;
+//    }
 
     public String getEVENT() {
         return EVENT;

@@ -125,6 +125,10 @@ public class CreateList extends AppCompatActivity {
         logout(this);
     }
 
+    public void ClickCalendar(View view) {
+        redirectActivity(this, Calendar.class);
+    }
+
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");

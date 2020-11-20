@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IGrocery">
         <activity android:name=".Calendar"></activity>
-        <activity android:name=".SecondActivity" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -40,6 +39,7 @@
         </activity>
         <activity android:name=".StoreMap" />
         <activity android:name=".EditListItem" />
+        <activity android:name=".CustomCalendar" />
     </application>
 
 </manifest>
