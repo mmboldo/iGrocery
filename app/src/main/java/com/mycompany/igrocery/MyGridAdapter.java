@@ -50,7 +50,7 @@ public class MyGridAdapter extends ArrayAdapter {
         }
 
         if(displayMonth == currentMonth && displayYear == currentYear) {
-            view.setBackgroundColor(getContext().getResources().getColor(R.color.quantum_yellow));
+            view.setBackgroundColor(getContext().getResources().getColor(R.color.lightgreencalendar));
         }
 
         else {

@@ -3,6 +3,7 @@ package com.mycompany.igrocery;
 import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
@@ -18,7 +19,17 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -40,12 +51,23 @@ public class CustomCalendar extends LinearLayout {
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.ENGLISH);
     SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseUser user; //Firebase obj
+    private String userId;
+
     MyGridAdapter myGridAdapter;
     AlertDialog alertDialog;
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList = new ArrayList<>();
     public CustomCalendar(Context context) {
         super(context);
+    }
+
+    public void getCurrentUser(){
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userId = user.getUid();
     }
 
     public CustomCalendar(Context context, @Nullable AttributeSet attrs) {
@@ -79,6 +101,7 @@ public class CustomCalendar extends LinearLayout {
                 TextView EventTime = addView.findViewById(R.id.eventtime);
                 ImageButton SetTime = addView.findViewById(R.id.seteventtime);
                 Button AddEvent = addView.findViewById(R.id.addevent);
+
                 SetTime.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -105,11 +128,19 @@ public class CustomCalendar extends LinearLayout {
                 final String month = monthFormat.format(dates.get(position));
                 final String year = yearFormat.format(dates.get(position));
 
+                getCurrentUser();
+
                 AddEvent.setOnClickListener(new OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        SaveEvent(EventName.getText().toString(), EventTime.getText().toString(),
-//                                date, month, year);
+                        mFirebaseInstance = FirebaseDatabase.getInstance();
+                        mFirebaseDatabase = mFirebaseInstance.getReference("Events");
+
+                        Events events = new Events(EventName.getText().toString(), EventTime.getText().toString(),
+                                date, month, year);
+
+                        mFirebaseDatabase.child(userId).setValue(events);
+
                         SetUpCalendar();
                         alertDialog.dismiss();
                     }
@@ -129,12 +160,28 @@ public class CustomCalendar extends LinearLayout {
         super(context, attrs, defStyleAttr);
     }
 
-//    private void SaveEvent(String event, String time, String date, String month, String year) {
+    private void SaveEvent(String event, String time, String date, String month, String year) {
+
+
 //        DBOpenHelper dbOpenHelper = new DBOpenHelper(context);
 //        SQLiteDatabase database = dbOpenHelper.getWritableDatabase();
 //        dbOpenHelper.SaveEvent(event, time, date, month, year, database);
 //        dbOpenHelper.close();
 //        Toast.makeText(context, "Event Saved", Toast.LENGTH_SHORT).show();
+    }
+
+//    private void addUserChangeListener() {
+//        mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 //    }
 
     private void InitializeLayout() {

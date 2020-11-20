@@ -128,6 +128,10 @@ public class CreateList extends AppCompatActivity {
         redirectActivity(this, StoreSelection.class);
     }
 
+    public void ClickCalendar(View view) {
+        redirectActivity(this, Calendar.class);
+    }
+
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");

@@ -26,7 +26,7 @@
             android:id="@+id/current_Date"
             android:textColor="@color/white"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="30sp"
             android:layout_weight="3"/>
         <ImageButton
             android:layout_width="40dp"
@@ -42,69 +42,76 @@
         android:orientation="horizontal"
         android:paddingTop="4dp"
         android:paddingBottom="4dp"
-        android:background="@color/teal_200">
+        android:background="@color/darkgreencalendar">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Sun"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Mon"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Tue"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Wed"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Thu"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Fri"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Sat"
-            android:background="@color/teal_200"
+            android:background="@color/darkgreencalendar"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
+            android:textColor="@color/white"
             android:textStyle="bold"/>
 
     </LinearLayout>

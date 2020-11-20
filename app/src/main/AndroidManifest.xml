@@ -44,6 +44,7 @@
         </activity>
         <activity android:name=".StoreMap" />
         <activity android:name=".EditListItem" />
+        <activity android:name=".CustomCalendar" />
     </application>
 
 </manifest>
