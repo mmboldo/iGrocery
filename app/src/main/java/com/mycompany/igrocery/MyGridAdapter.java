@@ -68,7 +68,6 @@ public class MyGridAdapter extends ArrayAdapter {
                     get(Calendar.MONTH) + 1 && displayYear == eventCalendar.get(Calendar.YEAR)){
                 arrayList.add(events.get(i).getEVENT());
                 EventNumber.setText(arrayList.size() + " Events");
-
             }
         }
 
