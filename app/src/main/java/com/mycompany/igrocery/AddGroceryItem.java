@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,12 +18,15 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 public class AddGroceryItem extends AppCompatActivity {
 
     EditText addItemTitle, addItemDescription, addItemQuantity;
     Button btnSave, btnCancel;
     DatabaseReference reference;
     Integer itemNum = new Random().nextInt();
+    String itemKey = Integer.toString(itemNum);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +41,6 @@ public class AddGroceryItem extends AppCompatActivity {
         btnCancel = findViewById(R.id.btnCancel);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // insert data to database
@@ -45,19 +48,27 @@ public class AddGroceryItem extends AppCompatActivity {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        snapshot.getRef().child("itemTitle").setValue(addItemTitle.getText().toString());
-                        snapshot.getRef().child("itemDescription").setValue(addItemDescription.getText().toString());
-                        snapshot.getRef().child("itemQuantity").setValue(addItemQuantity.getText().toString());
+
+                        reference.child("itemTitle").setValue(addItemTitle.getText().toString());
+                        reference.child("itemDescription").setValue(addItemDescription.getText().toString());
+                        reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
+                        reference.child("itemKey").setValue(itemKey);
 
                         Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
                         startActivity(intent);
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
+            }
+        });
+
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
+                startActivity(intent);
             }
         });
     }
