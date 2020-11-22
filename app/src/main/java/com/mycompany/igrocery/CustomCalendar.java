@@ -8,14 +8,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
 import android.util.EventLog;
+import android.util.PrintStreamPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -28,10 +31,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -46,6 +51,7 @@ public class CustomCalendar extends LinearLayout {
     ImageButton NextButton, PreviousButton;
     TextView CurrentDate;
     GridView gridView;
+    Button showEvents;
     private static final int MAX_CALENDAR_DAYS = 42;
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     Context context;
@@ -64,6 +70,10 @@ public class CustomCalendar extends LinearLayout {
     AlertDialog alertDialog;
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList = new ArrayList<>();
+    List<String> eventsListString = new ArrayList<>();
+    ArrayList<String> myArrayList = new ArrayList<>();
+    ListView myListView;
+
 
     public CustomCalendar(Context context) {
         super(context);
@@ -145,7 +155,8 @@ public class CustomCalendar extends LinearLayout {
                         Events events = new Events(EventName.getText().toString(), EventTime.getText().toString(),
                                 date, month, year);
 
-                        mFirebaseDatabase.child(userId).child("eventName:" + EventName.getText().toString()).setValue(events);
+                        mFirebaseDatabase.child("userId: " + userId).child("eventName: " + EventName.getText().toString()).setValue(events);
+                        Toast.makeText(getContext(), ("Event has been created"), Toast.LENGTH_SHORT).show();
 
                         SetUpCalendar();
                         alertDialog.dismiss();
@@ -183,7 +194,8 @@ public class CustomCalendar extends LinearLayout {
         monthCalendar.add(Calendar.DAY_OF_MONTH, -FirstDayofMonth);
 
         CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
-        Toast.makeText(getContext(), ("List size "+ (CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime())))), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ("User is "+ userId), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ("Array List size "+ eventsList.size()), Toast.LENGTH_SHORT).show();
         Toast.makeText(getContext(), ("Calendar time is "+ monthFormat.format(calendar.getTime())+" "+yearFormat.format(calendar.getTime())) +"", Toast.LENGTH_SHORT).show();
         while (dates.size() < MAX_CALENDAR_DAYS) {
             dates.add(monthCalendar.getTime());
@@ -193,17 +205,25 @@ public class CustomCalendar extends LinearLayout {
         gridView.setAdapter(myGridAdapter);
     }
 
-    private int CollectEventsPerMonths(String Month, String year) {
+    private void CollectEventsPerMonths(String Month, String year) {
         getCurrentUser();
-        eventsList.clear();
-
-        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child(userId).child("eventName");
+        //eventsList.clear();
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child("userId").child("eventName");
         mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+            Events events = null;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    Events p = dataSnapshot.getValue(Events.class);
-                    eventsList.add(p);
+
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    DataSnapshot eventName = dataSnapshot.child("eventName");
+                    DataSnapshot eventDate = dataSnapshot.child("date");
+                    DataSnapshot eventMonth = dataSnapshot.child("month");
+                    DataSnapshot eventTime = dataSnapshot.child("time");
+                    DataSnapshot eventYear = dataSnapshot.child("year");
+                    Events events1 = new Events(eventName.toString(), eventDate.toString(), eventMonth.toString()
+                            , eventTime.toString(), eventYear.toString());
+                    eventsList.add(events1);
+
                 }
             }
 
@@ -212,7 +232,7 @@ public class CustomCalendar extends LinearLayout {
 
             }
         });
-        return eventsList.size();
+
     }
 }
 
