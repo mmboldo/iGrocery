@@ -7,14 +7,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
+import android.util.EventLog;
+import android.util.PrintStreamPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -22,13 +26,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
@@ -43,6 +51,7 @@ public class CustomCalendar extends LinearLayout {
     ImageButton NextButton, PreviousButton;
     TextView CurrentDate;
     GridView gridView;
+    Button showEvents;
     private static final int MAX_CALENDAR_DAYS = 42;
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     Context context;
@@ -55,17 +64,22 @@ public class CustomCalendar extends LinearLayout {
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
-    private String userId;
+    private String userId, eventName;
 
     MyGridAdapter myGridAdapter;
     AlertDialog alertDialog;
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList = new ArrayList<>();
+    List<String> eventsListString = new ArrayList<>();
+    ArrayList<String> myArrayList = new ArrayList<>();
+    ListView myListView;
+
+
     public CustomCalendar(Context context) {
         super(context);
     }
 
-    public void getCurrentUser(){
+    public void getCurrentUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
         userId = user.getUid();
     }
@@ -91,14 +105,15 @@ public class CustomCalendar extends LinearLayout {
                 SetUpCalendar();
             }
         });
+
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setCancelable(true);
-                View addView = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_newevent_layout, null);
-                EditText EventName = addView.findViewById(R.id.eventname);
-                TextView EventTime = addView.findViewById(R.id.eventtime);
+                final View addView = LayoutInflater.from(parent.getContext()).inflate(R.layout.add_newevent_layout, null);
+                final EditText EventName = addView.findViewById(R.id.eventname);
+                final TextView EventTime = addView.findViewById(R.id.eventtime);
                 ImageButton SetTime = addView.findViewById(R.id.seteventtime);
                 Button AddEvent = addView.findViewById(R.id.addevent);
 
@@ -124,6 +139,7 @@ public class CustomCalendar extends LinearLayout {
                         timePickerDialog.show();
                     }
                 });
+
                 final String date = eventDateFormat.format(dates.get(position));
                 final String month = monthFormat.format(dates.get(position));
                 final String year = yearFormat.format(dates.get(position));
@@ -139,7 +155,8 @@ public class CustomCalendar extends LinearLayout {
                         Events events = new Events(EventName.getText().toString(), EventTime.getText().toString(),
                                 date, month, year);
 
-                        mFirebaseDatabase.child(userId).setValue(events);
+                        mFirebaseDatabase.child("userId: " + userId).child("eventName: " + EventName.getText().toString()).setValue(events);
+                        Toast.makeText(getContext(), ("Event has been created"), Toast.LENGTH_SHORT).show();
 
                         SetUpCalendar();
                         alertDialog.dismiss();
@@ -152,40 +169,14 @@ public class CustomCalendar extends LinearLayout {
             }
         });
 
-
-
     }
 
     public CustomCalendar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
-    private void SaveEvent(String event, String time, String date, String month, String year) {
-
-
-//        DBOpenHelper dbOpenHelper = new DBOpenHelper(context);
-//        SQLiteDatabase database = dbOpenHelper.getWritableDatabase();
-//        dbOpenHelper.SaveEvent(event, time, date, month, year, database);
-//        dbOpenHelper.close();
-//        Toast.makeText(context, "Event Saved", Toast.LENGTH_SHORT).show();
-    }
-
-//    private void addUserChangeListener() {
-//        mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//    }
-
     private void InitializeLayout() {
-        LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.thecalendar_layout, this);
         NextButton = view.findViewById(R.id.nextbtn);
         PreviousButton = view.findViewById(R.id.previousbtn);
@@ -197,37 +188,51 @@ public class CustomCalendar extends LinearLayout {
         String currentDate = dateFormat.format(calendar.getTime());
         CurrentDate.setText(currentDate);
         dates.clear();
-        Calendar monthCalendar = (Calendar)calendar.clone();
+        Calendar monthCalendar = (Calendar) calendar.clone();
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
-        int FirstDayofMonth = monthCalendar.get(Calendar.DAY_OF_WEEK)-1;
-        monthCalendar.add(Calendar.DAY_OF_MONTH, - FirstDayofMonth);
-//        CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
+        int FirstDayofMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) - 1;
+        monthCalendar.add(Calendar.DAY_OF_MONTH, -FirstDayofMonth);
 
-        while(dates.size() < MAX_CALENDAR_DAYS) {
+        CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
+        Toast.makeText(getContext(), ("User is "+ userId), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ("Array List size "+ eventsList.size()), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), ("Calendar time is "+ monthFormat.format(calendar.getTime())+" "+yearFormat.format(calendar.getTime())) +"", Toast.LENGTH_SHORT).show();
+        while (dates.size() < MAX_CALENDAR_DAYS) {
             dates.add(monthCalendar.getTime());
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        myGridAdapter = new MyGridAdapter(context,dates, calendar, eventsList);
+        myGridAdapter = new MyGridAdapter(context, dates, calendar, eventsList);
         gridView.setAdapter(myGridAdapter);
     }
 
-//    private void CollectEventsPerMonths(String Month, String year) {
-//        eventsList.clear();
-//        DBOpenHelper dbOpenHelper = new DBOpenHelper(context);
-//        SQLiteDatabase database = dbOpenHelper.getReadableDatabase();
-//        Cursor cursor = dbOpenHelper.ReadEventsMonth(Month, year, database);
-//        while(cursor.moveToNext()) {
-//            String event = cursor.getString(cursor.getColumnIndex(DBStructure.EVENT));
-//            String time = cursor.getString(cursor.getColumnIndex(DBStructure.TIME));
-//            String date = cursor.getString(cursor.getColumnIndex(DBStructure.DATE));
-//            String month = cursor.getString(cursor.getColumnIndex(DBStructure.MONTH));
-//            String Year = cursor.getString(cursor.getColumnIndex(DBStructure.YEAR));
-//            Events events = new Events(event, time, date, month, Year);
-//            eventsList.add(events);
-//        }
-//        cursor.close();
-//        dbOpenHelper.close();
-//
-//    }
+    private void CollectEventsPerMonths(String Month, String year) {
+        getCurrentUser();
+        //eventsList.clear();
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child("userId").child("eventName");
+        mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
+            Events events = null;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    DataSnapshot eventName = dataSnapshot.child("eventName");
+                    DataSnapshot eventDate = dataSnapshot.child("date");
+                    DataSnapshot eventMonth = dataSnapshot.child("month");
+                    DataSnapshot eventTime = dataSnapshot.child("time");
+                    DataSnapshot eventYear = dataSnapshot.child("year");
+                    Events events1 = new Events(eventName.toString(), eventDate.toString(), eventMonth.toString()
+                            , eventTime.toString(), eventYear.toString());
+                    eventsList.add(events1);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
 }
+

@@ -9,16 +9,7 @@ public class Events {
         this.DATE = DATE;
         this.MONTH = MONTH;
         this.YEAR = YEAR;
-//        this.user = user;
     }
-//
-//    public String getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(String user) {
-//        this.user = user;
-//    }
 
     public String getEVENT() {
         return EVENT;
