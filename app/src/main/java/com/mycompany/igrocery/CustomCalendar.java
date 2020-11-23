@@ -71,6 +71,7 @@ public class CustomCalendar extends LinearLayout {
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList = new ArrayList<>();
 
+
     public CustomCalendar(Context context) {
         super(context);
     }
@@ -178,6 +179,7 @@ public class CustomCalendar extends LinearLayout {
     private void InitializeLayout() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.thecalendar_layout, this);
+        EventList();
         NextButton = view.findViewById(R.id.nextbtn);
         PreviousButton = view.findViewById(R.id.previousbtn);
         CurrentDate = view.findViewById(R.id.current_Date);
@@ -211,12 +213,14 @@ public class CustomCalendar extends LinearLayout {
     }
 
     private void EventList() {
+
         getCurrentUser();
         mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Events").child(userId);
         mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
             Events events1 = null;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                eventsList.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     String eventName = dataSnapshot.getKey();
                     events1 = dataSnapshot.getValue(Events.class);
@@ -230,6 +234,7 @@ public class CustomCalendar extends LinearLayout {
             }
 
         });
+
     }
 
 }
