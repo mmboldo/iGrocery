@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +30,17 @@ public class AddGroceryItem extends AppCompatActivity {
     Integer itemNum = new Random().nextInt();
     String itemKey = Integer.toString(itemNum);
 
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseUser user; //Firebase obj
+    private String userId, eventName;
+
+    public void getCurrentUser() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userId = user.getUid();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +53,14 @@ public class AddGroceryItem extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnCancel = findViewById(R.id.btnCancel);
 
+        getCurrentUser();
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // insert data to database
-                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("GroceryItem"+itemNum);
+                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
+
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
