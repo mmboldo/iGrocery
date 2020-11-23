@@ -70,10 +70,6 @@ public class CustomCalendar extends LinearLayout {
     AlertDialog alertDialog;
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList = new ArrayList<>();
-    List<String> eventsListString = new ArrayList<>();
-    ArrayList<String> myArrayList = new ArrayList<>();
-    ListView myListView;
-
 
     public CustomCalendar(Context context) {
         super(context);
@@ -89,12 +85,14 @@ public class CustomCalendar extends LinearLayout {
         this.context = context;
         InitializeLayout();
         SetUpCalendar();
+        EventList();
 
         PreviousButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar.add(Calendar.MONTH, -1);
                 SetUpCalendar();
+                EventList();
             }
         });
 
@@ -103,6 +101,7 @@ public class CustomCalendar extends LinearLayout {
             public void onClick(View v) {
                 calendar.add(Calendar.MONTH, 1);
                 SetUpCalendar();
+                EventList();
             }
         });
 
@@ -123,7 +122,7 @@ public class CustomCalendar extends LinearLayout {
                         Calendar calendar = Calendar.getInstance();
                         int hours = calendar.get(Calendar.HOUR_OF_DAY);
                         int minutes = calendar.get(Calendar.MINUTE);
-                        TimePickerDialog timePickerDialog = new TimePickerDialog(addView.getContext(), R.style.Theme_AppCompat_Dialog,
+                        TimePickerDialog timePickerDialog = new TimePickerDialog(addView.getContext(), R.style.Theme_AppCompat_DayNight_Dialog,
                                 new TimePickerDialog.OnTimeSetListener() {
                                     @Override
                                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -155,14 +154,15 @@ public class CustomCalendar extends LinearLayout {
                         Events events = new Events(EventName.getText().toString(), EventTime.getText().toString(),
                                 date, month, year);
 
-                        mFirebaseDatabase.child("userId: " + userId).child("eventName: " + EventName.getText().toString()).setValue(events);
+                        mFirebaseDatabase.child(userId).child("eventName: " + EventName.getText().toString()).setValue(events);
                         Toast.makeText(getContext(), ("Event has been created"), Toast.LENGTH_SHORT).show();
 
-                        SetUpCalendar();
+
                         alertDialog.dismiss();
                     }
                 });
-
+                SetUpCalendar();
+                EventList();
                 builder.setView(addView);
                 alertDialog = builder.create();
                 alertDialog.show();
@@ -182,6 +182,7 @@ public class CustomCalendar extends LinearLayout {
         PreviousButton = view.findViewById(R.id.previousbtn);
         CurrentDate = view.findViewById(R.id.current_Date);
         gridView = view.findViewById(R.id.gridview);
+
     }
 
     private void SetUpCalendar() {
@@ -193,37 +194,33 @@ public class CustomCalendar extends LinearLayout {
         int FirstDayofMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) - 1;
         monthCalendar.add(Calendar.DAY_OF_MONTH, -FirstDayofMonth);
 
-        CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
-        Toast.makeText(getContext(), ("User is "+ userId), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), ("Array List size "+ eventsList.size()), Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), ("Calendar time is "+ monthFormat.format(calendar.getTime())+" "+yearFormat.format(calendar.getTime())) +"", Toast.LENGTH_SHORT).show();
         while (dates.size() < MAX_CALENDAR_DAYS) {
             dates.add(monthCalendar.getTime());
             monthCalendar.add(Calendar.DAY_OF_MONTH, 1);
         }
+
+        CollectEventsPerMonths(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
+        Toast.makeText(getContext(), ("Array List size "+ eventsList.size()), Toast.LENGTH_SHORT).show();
         myGridAdapter = new MyGridAdapter(context, dates, calendar, eventsList);
         gridView.setAdapter(myGridAdapter);
+
     }
 
     private void CollectEventsPerMonths(String Month, String year) {
+
+    }
+
+    private void EventList() {
         getCurrentUser();
-        //eventsList.clear();
-        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference().child("Events").child("userId").child("eventName");
+        mFirebaseDatabase = FirebaseDatabase.getInstance().getReference("Events").child(userId);
         mFirebaseDatabase.addValueEventListener(new ValueEventListener() {
-            Events events = null;
+            Events events1 = null;
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    DataSnapshot eventName = dataSnapshot.child("eventName");
-                    DataSnapshot eventDate = dataSnapshot.child("date");
-                    DataSnapshot eventMonth = dataSnapshot.child("month");
-                    DataSnapshot eventTime = dataSnapshot.child("time");
-                    DataSnapshot eventYear = dataSnapshot.child("year");
-                    Events events1 = new Events(eventName.toString(), eventDate.toString(), eventMonth.toString()
-                            , eventTime.toString(), eventYear.toString());
+                    String eventName = dataSnapshot.getKey();
+                    events1 = dataSnapshot.getValue(Events.class);
                     eventsList.add(events1);
-
                 }
             }
 
@@ -231,8 +228,9 @@ public class CustomCalendar extends LinearLayout {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
 
+        });
     }
+
 }
 

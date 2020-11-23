@@ -10,6 +10,8 @@ public class Events {
         this.MONTH = MONTH;
         this.YEAR = YEAR;
     }
+    public Events() {
+    }
 
     public String getEVENT() {
         return EVENT;
