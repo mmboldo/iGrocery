@@ -37,6 +37,8 @@ public class AddGroceryItem extends AppCompatActivity {
     private FirebaseUser user; //Firebase obj
     private String userEmail;
 
+    private boolean sharing = false;
+
     public void getCurrentUser() {
 
         Bundle bundle = getIntent().getExtras();
@@ -45,6 +47,7 @@ public class AddGroceryItem extends AppCompatActivity {
         if(sharedUser != null){
             reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
             userEmail = sharedUser.replace(".", "&");
+            sharing = true;
         }
         else{
             user = FirebaseAuth.getInstance().getCurrentUser();
@@ -82,10 +85,15 @@ public class AddGroceryItem extends AppCompatActivity {
                 reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
                 reference.child("itemKey").setValue(itemKey);
 
+                userEmail.replace("&", ".");
+
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
+
+                        intent.putExtra("userEmail", userEmail);
+
                         startActivity(intent);
                     }
                     @Override

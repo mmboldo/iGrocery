@@ -46,12 +46,25 @@ public class CreateList extends AppCompatActivity {
     private FirebaseUser user; //Firebase obj
     private String userEmail;
 
+    Intent intent = getIntent();
+
     public void getCurrentUser() {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userEmail = user.getEmail().replace(".", "&");
+
+        try{
+            String sharedUser = intent.getStringExtra("userEmail");
+            if(sharedUser != null){
+                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail);
+                userEmail = sharedUser.replace(".", "&");
+                //sharing = true;
+            }
+            else{
+                user = FirebaseAuth.getInstance().getCurrentUser();
+                userEmail = user.getEmail().replace(".", "&");
+            }}catch(Exception e){
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            userEmail = user.getEmail().replace(".", "&");
+        }
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +78,13 @@ public class CreateList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateList.this, AddGroceryItem.class);
+
+                Intent i = getIntent();
+                String user = i.getStringExtra("userEmail");
+                if(user != null){
+                    intent.putExtra("userEmail",user);
+                }
+
                 startActivity(intent);
             }
         });
@@ -75,6 +95,19 @@ public class CreateList extends AppCompatActivity {
         list = new ArrayList<GroceryList>();
 
         // getting data from firebase
+        Intent i = getIntent();
+        String sharedUser = i.getStringExtra("userEmail");
+        if(sharedUser != null){
+
+            userEmail = sharedUser;
+            reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
+            //sharing = true;
+        }
+        else{
+            reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
+        }
+
+
         reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
         reference.addValueEventListener(new ValueEventListener() {
 

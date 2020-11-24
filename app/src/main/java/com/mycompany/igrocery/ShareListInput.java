@@ -29,7 +29,7 @@ public class ShareListInput extends AppCompatActivity {
                 Intent intent = new Intent(ShareListInput.this, AddGroceryItem.class);
                 intent.putExtra("userEmail", share.getText().toString());
 
-                Toast.makeText(ShareListInput.this, share.getText().toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(ShareListInput.this, share.getText().toString(), Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
