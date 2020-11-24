@@ -39,21 +39,21 @@ public class AddGroceryItem extends AppCompatActivity {
 
     public void getCurrentUser() {
 
-        /*Bundle bundle = getIntent().getExtras();
+        Bundle bundle = getIntent().getExtras();
         assert bundle != null;
-        String sharedUser = bundle.getString("userId");
+        String sharedUser = bundle.getString("userEmail");
         if(sharedUser != null){
-            //reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
-            //userId = sharedUser;
+            reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
+            userEmail = sharedUser.replace(".", "&");
         }
         else{
             user = FirebaseAuth.getInstance().getCurrentUser();
-            //userId = user.getUid();
-        }*/
+            userEmail = user.getEmail().replace(".", "&");
+        }
 
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userEmail = user.getEmail().replace(".", "&");
+        //user = FirebaseAuth.getInstance().getCurrentUser();
+        //userEmail = user.getEmail().replace(".", "&");
 
     }
 
