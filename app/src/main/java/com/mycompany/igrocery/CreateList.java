@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,15 @@ public class CreateList extends AppCompatActivity {
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
 
+    private FirebaseUser user; //Firebase obj
+    private String userEmail;
+
+    public void getCurrentUser() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userEmail = user.getEmail().replace(".", "&");
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +58,7 @@ public class CreateList extends AppCompatActivity {
         setContentView(R.layout.activity_create_list);
 
         btnAddNew = findViewById(R.id.btnAddNew);
-
+        getCurrentUser();
         btnAddNew.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -63,7 +74,7 @@ public class CreateList extends AppCompatActivity {
         list = new ArrayList<GroceryList>();
 
         // getting data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList");
+        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);;
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
