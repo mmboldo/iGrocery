@@ -85,8 +85,9 @@ public class CustomCalendar extends LinearLayout {
         super(context, attrs);
         this.context = context;
         InitializeLayout();
-        SetUpCalendar();
         EventList();
+        SetUpCalendar();
+
 
         PreviousButton.setOnClickListener(new OnClickListener() {
             @Override
@@ -179,7 +180,6 @@ public class CustomCalendar extends LinearLayout {
     private void InitializeLayout() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.thecalendar_layout, this);
-        EventList();
         NextButton = view.findViewById(R.id.nextbtn);
         PreviousButton = view.findViewById(R.id.previousbtn);
         CurrentDate = view.findViewById(R.id.current_Date);

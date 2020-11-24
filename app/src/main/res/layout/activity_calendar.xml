@@ -13,8 +13,13 @@
         android:background="#F4F4F4"
         android:orientation="vertical">
 
+<<<<<<< HEAD
     <include
         layout="@layout/main_toolbar"/>
+=======
+        <include
+            layout="@layout/main_toolbar"/>
+>>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"

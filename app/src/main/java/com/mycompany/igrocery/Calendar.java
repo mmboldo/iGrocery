@@ -12,7 +12,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+<<<<<<< HEAD
 import android.view.MenuItem;
+=======
+>>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
 import android.view.View;
 import android.widget.Toast;
 
