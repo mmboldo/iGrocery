@@ -144,6 +144,10 @@ public class CreateList extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
 
+    public void ClickStoreMap(View view) {
+        redirectActivity(this, StoreMap.class);
+    }
+
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");
