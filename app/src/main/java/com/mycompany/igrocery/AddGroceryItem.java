@@ -35,20 +35,25 @@ public class AddGroceryItem extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
-    private String userId, eventName;
+    private String userEmail;
 
     public void getCurrentUser() {
+
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String sharedUser = bundle.getString("userId");
         if(sharedUser != null){
-            reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
+            //reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
             //userId = sharedUser;
         }
         else{
             user = FirebaseAuth.getInstance().getCurrentUser();
-            userId = user.getUid();
+            //userId = user.getUid();
         }
+
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userEmail = user.getEmail().replace(".", "&");
 
     }
 
@@ -70,7 +75,7 @@ public class AddGroceryItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // insert data to database
-                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
+                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override

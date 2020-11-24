@@ -29,12 +29,11 @@ public class EditListItem extends AppCompatActivity {
 
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
-    private String userId, eventName;
+    private String userEmail, eventName;
 
     public void getCurrentUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
-    }
+        userEmail = user.getEmail().replace(".", "&");    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class EditListItem extends AppCompatActivity {
         editItemQuantity.setText(getIntent().getStringExtra("itemQuantity"));
         final String key = getIntent().getStringExtra("itemKey");
         getCurrentUser();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+key);
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+key);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
