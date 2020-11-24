@@ -39,7 +39,7 @@ public class AddGroceryItem extends AppCompatActivity {
 
     public void getCurrentUser() {
 
-        Bundle bundle = getIntent().getExtras();
+        /*Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String sharedUser = bundle.getString("userId");
         if(sharedUser != null){
@@ -49,7 +49,7 @@ public class AddGroceryItem extends AppCompatActivity {
         else{
             user = FirebaseAuth.getInstance().getCurrentUser();
             //userId = user.getUid();
-        }
+        }*/
 
 
         user = FirebaseAuth.getInstance().getCurrentUser();
