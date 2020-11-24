@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +25,16 @@ public class EditListItem extends AppCompatActivity {
 
     EditText editItemTitle, editItemDescription, editItemQuantity;
     Button btnSaveUpdate, btnDelete;
-    DatabaseReference reference;
+    DatabaseReference mDatabaseReference;
+
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseUser user; //Firebase obj
+    private String userId, eventName;
+
+    public void getCurrentUser() {
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userId = user.getUid();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,47 +52,44 @@ public class EditListItem extends AppCompatActivity {
         editItemDescription.setText(getIntent().getStringExtra("itemDescription"));
         editItemQuantity.setText(getIntent().getStringExtra("itemQuantity"));
         final String key = getIntent().getStringExtra("itemKey");
-
-        reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("GroceryItem"+key);
+        getCurrentUser();
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+key);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reference.removeValue();
-                Intent a = new Intent(EditListItem.this, CreateList.class);
-                startActivity(a);
-
-
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Intent a = new Intent(EditListItem.this, CreateList.class);
-//                        startActivity(a);
-//                    }
-//                });
+                mDatabaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Intent a = new Intent(EditListItem.this, CreateList.class);
+                        startActivity(a);
+                        finish();
+                    }
+                });
             }
         });
 
         btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reference.addValueEventListener(new ValueEventListener() {
+                mDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        reference.child("itemTitle").setValue(editItemTitle.getText().toString());
-                        reference.child("itemDescription").setValue(editItemDescription.getText().toString());
-                        reference.child("itemQuantity").setValue(editItemQuantity.getText().toString());
-                        reference.child("itemKey").setValue(key);
+                        mDatabaseReference.child("itemTitle").setValue(editItemTitle.getText().toString());
+                        mDatabaseReference.child("itemDescription").setValue(editItemDescription.getText().toString());
+                        mDatabaseReference.child("itemQuantity").setValue(editItemQuantity.getText().toString());
+                        mDatabaseReference.child("itemKey").setValue(key);
 
                         Intent intent = new Intent(EditListItem.this, CreateList.class);
                         startActivity(intent);
+                        finish();
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-                reference.removeValue();
+                mDatabaseReference.removeValue();
             }
         });
     }
