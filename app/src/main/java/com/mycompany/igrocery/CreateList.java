@@ -119,7 +119,7 @@ public class CreateList extends AppCompatActivity {
 
 
     public void ClickSearch(View view){
-        redirectActivity(this, MapActivity.class);
+        redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
         logout(this);
