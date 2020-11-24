@@ -42,11 +42,7 @@ public class Login extends AppCompatActivity {
         passInput = (TextInputEditText) findViewById(R.id.password);
         loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
-        goToStoreMap = (AppCompatButton) findViewById(R.id.tempBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        goToStoreMap = (AppCompatButton)findViewById(R.id.tempBtn2);
-
-        //temp button only for test
 
 
         //Go to new User Registration
@@ -58,23 +54,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        //Go to Store Map
-        goToStoreMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Login.this, StoreMap.class);
-                startActivity(myIntent);
-            }
-        });
-
-        //Go to Calendar
-        goToStoreMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Login.this, Calendar.class);
-                startActivity(myIntent);
-            }
-        });
 
         //login btn call method
         loginBtn.setOnClickListener(new View.OnClickListener() {

@@ -1,13 +1,21 @@
 package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -26,6 +34,8 @@ public class StoreMap extends AppCompatActivity {
     List<Stores> StoreList = new ArrayList<>();
     private boolean isFragmentDisplayed = false;
     static final String STATE_FRAGMENT = "state_of_fragment";
+    //Initialize Drawer Navigation variable
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +115,14 @@ public class StoreMap extends AppCompatActivity {
 
             }
         });
+
+        //Drawer Navigation
+        drawerLayout = findViewById(R.id.layout_storemap);
+
+        //Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_view);
+        setSupportActionBar(toolbar);
+        //getSupportActionBar().setTitle("");
     }
 
     private List<Stores> ReadFile() {
@@ -198,6 +216,87 @@ public class StoreMap extends AppCompatActivity {
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putBoolean(STATE_FRAGMENT, isFragmentDisplayed);
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void ClickMenu(View view){
+        openDrawer(drawerLayout);
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        closeDrawer(drawerLayout);
+    }
+    public static void closeDrawer(DrawerLayout drawerLayout){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickList(View view){
+        redirectActivity(this, CreateList.class);
+    }
+
+
+    public void ClickSearch(View view){
+        redirectActivity(this, MapActivity.class);
+    }
+    public void ClickLogout(View view){
+        logout(this);
+    }
+
+    public void ClickStoreMap(View view) {
+        redirectActivity(this, StoreMap.class);
+    }
+
+    public void ClickCalendar(View view) {
+        redirectActivity(this, Calendar.class);
+    }
+
+    public void logout(Activity activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Back to login page
+                Intent intent = new Intent(StoreMap.this, Login.class);
+                activity.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    public static void redirectActivity(Activity activity, Class aclass) {
+        Intent intent = new Intent(activity, aclass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    //toolbar settings
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.top_navigation, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 

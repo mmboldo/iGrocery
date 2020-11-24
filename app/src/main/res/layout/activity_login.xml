@@ -82,28 +82,6 @@
             android:text="@string/SignUpBtn"
             android:textColor="#4D4D4D" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tempBtn"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#00000000"
-            android:elevation="0dp"
-            android:text="StoreMap"
-            android:textColor="#4D4D4D"
-            android:textSize="8dp" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tempBtn2"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:background="#00000000"
-            android:elevation="0dp"
-            android:text="Calendar"
-            android:textColor="#4D4D4D"
-            android:textSize="8dp" />
-
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
