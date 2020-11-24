@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.auth.UserInfo;
 
 import java.util.Random;
 
@@ -37,8 +38,18 @@ public class AddGroceryItem extends AppCompatActivity {
     private String userId, eventName;
 
     public void getCurrentUser() {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
+        Bundle bundle = getIntent().getExtras();
+        assert bundle != null;
+        String sharedUser = bundle.getString("userId");
+        if(sharedUser != null){
+            reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
+            //userId = sharedUser;
+        }
+        else{
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            userId = user.getUid();
+        }
+
     }
 
     @Override

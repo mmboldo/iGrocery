@@ -213,7 +213,7 @@ public class CreateList extends AppCompatActivity {
             */
             case R.id.nav_shareList:
                 //addfav (heart icon) was clicked, Insert your after click code here.
-                Intent intent2 = new Intent(CreateList.this, ShareList.class);
+                Intent intent2 = new Intent(CreateList.this, ShareListInput.class);
                 startActivity(intent2);
                 break;
 
