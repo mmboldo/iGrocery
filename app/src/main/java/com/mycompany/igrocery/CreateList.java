@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,12 +75,13 @@ public class CreateList extends AppCompatActivity {
         list = new ArrayList<GroceryList>();
 
         // getting data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);;
+        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
         reference.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // retrieve data and create layout
+
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     GroceryList p = dataSnapshot.getValue(GroceryList.class);
                     list.add(p);

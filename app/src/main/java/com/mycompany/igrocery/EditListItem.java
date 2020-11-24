@@ -52,11 +52,12 @@ public class EditListItem extends AppCompatActivity {
         editItemQuantity.setText(getIntent().getStringExtra("itemQuantity"));
         final String key = getIntent().getStringExtra("itemKey");
         getCurrentUser();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+key);
 
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+key);
+
                 mDatabaseReference.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
@@ -71,14 +72,16 @@ public class EditListItem extends AppCompatActivity {
         btnSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mDatabaseReference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+key);
+
+                mDatabaseReference.child("itemTitle").setValue(editItemTitle.getText().toString());
+                mDatabaseReference.child("itemDescription").setValue(editItemDescription.getText().toString());
+                mDatabaseReference.child("itemQuantity").setValue(editItemQuantity.getText().toString());
+                mDatabaseReference.child("itemKey").setValue(key);
+
                 mDatabaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        mDatabaseReference.child("itemTitle").setValue(editItemTitle.getText().toString());
-                        mDatabaseReference.child("itemDescription").setValue(editItemDescription.getText().toString());
-                        mDatabaseReference.child("itemQuantity").setValue(editItemQuantity.getText().toString());
-                        mDatabaseReference.child("itemKey").setValue(key);
-
                         Intent intent = new Intent(EditListItem.this, CreateList.class);
                         startActivity(intent);
                         finish();
@@ -88,7 +91,6 @@ public class EditListItem extends AppCompatActivity {
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
-                mDatabaseReference.removeValue();
             }
         });
     }
