@@ -13,11 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IGrocery">
-
-        <activity android:name=".Test"></activity>
-
-        <activity android:name=".Calendar"></activity>
-
+        <activity android:name=".ShareListInput"></activity>
+        <activity android:name=".Test" />
+        <activity android:name=".Calendar" />
         <activity android:name=".SecondActivity" />
 
         <meta-data
