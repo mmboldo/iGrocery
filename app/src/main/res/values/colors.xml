@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greenIGrocery">#66CD00 </color>
     <color name="colorPrimary">#FF018786</color>
+    <color name="lightgreencalendar">#90EE90</color>
+    <color name="darkgreencalendar">#006400</color>
 </resources>

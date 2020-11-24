@@ -13,7 +13,7 @@
     <string name="loginBtn">Login </string>
     <string name="SignUpBtn">New? Signup </string>
     <string name="registrationTitle">Welcome, please register to iGrocery? </string>
-    <string name="alreadRegisteredBtn">Alread has an Account</string>
+    <string name="alreadRegisteredBtn">Already has an Account</string>
     <string name="addAddress">Add your Address</string>
     <string name="registerBtn">Register</string>
     <string name="emailError">Please enter a valid email.</string>
@@ -24,12 +24,14 @@
     <string name="groceryList">Grocery List</string>
     <string name="SelectStore">Select your favorite grocery store</string>
     <string name="newGroceryItem">Add a new item</string>
+    <string name="editGroceryItem">Edit grocery item</string>
+
     <string name="ShareList">Share your list</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="save">save</string>
-
+    <string name="seeMapStoreBtn">See Map</string>
 
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
@@ -42,4 +44,26 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="florist">FLORIST</string>
+    <string name="produce">PRODUCE</string>
+    <string name="bulk">BULK</string>
+    <string name="pharmacy">PHARMACY</string>
+    <string name="meat">MEAT</string>
+    <string name="dairy">DAIRY, EGGS &amp; CHEESE</string>
+    <string name="frozen">FROZEN</string>
+    <string name="bakery">BAKERY</string>
+    <string name="deli">DELI &amp; PREPARED FOODS</string>
+    <string name="home">HOME &amp; CLOTHING</string>
+    <string name="bath">BATH &amp; BEAUTY</string>
+    <string name="garden">GARDEN &amp; SEASONAL</string>
+    <string name="checkout">CHECK OUT</string>
+    <string name="seafood">SEAFOOD</string>
+    <string name="cafe">CAFÉ</string>
+    <string name="grocery">GROCERY</string>
+    <string name="exception_message">Error occur</string>
+    <string name="close">CLOSE</string>
+    <string name="walmart">Walmart - Aisle Details</string>
+    <string name="saveonfoods">Save On Foods - Aisle Details</string>
+    <string name="superstore">Real Canadian Superstore - Aisle Details</string>
+    <string name="saveevent">Save Event</string>
 </resources>

@@ -21,7 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Login extends AppCompatActivity {
-    private AppCompatButton loginBtn, newUserBtn, goToStoreMap;
+    private AppCompatButton loginBtn, newUserBtn, goToStoreMap, goToCalendar;
     private FirebaseAuth auth;
     private TextInputEditText emailInput, passInput;
     private TextInputLayout emailLayout, passLayout;
@@ -42,10 +42,7 @@ public class Login extends AppCompatActivity {
         passInput = (TextInputEditText) findViewById(R.id.password);
         loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
-        goToStoreMap = (AppCompatButton) findViewById(R.id.tempBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-        //temp button only for test
 
 
         //Go to new User Registration
@@ -57,14 +54,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        //Go to Store Map
-        goToStoreMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent myIntent = new Intent(Login.this, StoreMap.class);
-                startActivity(myIntent);
-            }
-        });
 
         //login btn call method
         loginBtn.setOnClickListener(new View.OnClickListener() {

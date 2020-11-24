@@ -1,6 +1,7 @@
 package com.mycompany.igrocery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,23 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         holder.itemTitle.setText(GroceryList.get(position).getItemTitle());
         holder.itemDescription.setText(GroceryList.get(position).getItemDescription());
         holder.itemQuantity.setText(GroceryList.get(position).getItemQuantity());
+
+        String getItemTitle = GroceryList.get(position).getItemTitle();
+        String getItemDescription = GroceryList.get(position).getItemDescription();
+        String getItemQuantity = GroceryList.get(position).getItemQuantity();
+        String getItemKey = GroceryList.get(position).getItemKey();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditListItem.class);
+                intent.putExtra("itemTitle", getItemTitle);
+                intent.putExtra("itemDescription", getItemDescription);
+                intent.putExtra("itemQuantity", getItemQuantity);
+                intent.putExtra("itemKey", getItemKey);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -39,9 +57,9 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         return GroceryList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemTitle, itemDescription, itemQuantity;
+        TextView itemTitle, itemDescription, itemQuantity, itemKey;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
