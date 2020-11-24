@@ -77,15 +77,14 @@ public class AddGroceryItem extends AppCompatActivity {
                 // insert data to database
                 reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
 
+                reference.child("itemTitle").setValue(addItemTitle.getText().toString());
+                reference.child("itemDescription").setValue(addItemDescription.getText().toString());
+                reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
+                reference.child("itemKey").setValue(itemKey);
+
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        reference.child("itemTitle").setValue(addItemTitle.getText().toString());
-                        reference.child("itemDescription").setValue(addItemDescription.getText().toString());
-                        reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
-                        reference.child("itemKey").setValue(itemKey);
-
                         Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
                         startActivity(intent);
                     }
