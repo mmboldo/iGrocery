@@ -90,10 +90,7 @@
             android:layout_marginEnd="48dp"
             android:src="@drawable/indoornav" />
     </LinearLayout>
-<<<<<<< HEAD
 
-=======
->>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

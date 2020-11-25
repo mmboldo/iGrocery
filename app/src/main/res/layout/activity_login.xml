@@ -82,8 +82,7 @@
             android:text="@string/SignUpBtn"
             android:textColor="#4D4D4D" />
 
-<<<<<<< HEAD
-=======
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tempBtn2"
             android:layout_width="100dp"
@@ -95,7 +94,7 @@
             android:textColor="#4D4D4D"
             android:textSize="8dp" />
 
->>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"

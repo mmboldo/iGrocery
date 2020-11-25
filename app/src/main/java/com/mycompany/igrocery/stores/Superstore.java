@@ -4,8 +4,8 @@ public class Superstore {
 
     public String name = "Real Canadian Superstore";
     public String address = "1105- 4700 Kingsway";
-    public float latitude = (float) 49.227826;
-    public float longitude = (float) (-123.001253);
+    public String latitude = "49.227826";
+    public String longitude = "-123.001253";
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class Superstore {
         return address;
     }
 
-    public float getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 
-    public float getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 }

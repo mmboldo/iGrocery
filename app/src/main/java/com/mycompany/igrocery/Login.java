@@ -43,12 +43,11 @@ public class Login extends AppCompatActivity {
         loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-<<<<<<< HEAD
-=======
+
         goToCalendar = (AppCompatButton)findViewById(R.id.tempBtn2);
 
         //temp button only for test
->>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
+
 
 
         //Go to new User Registration
@@ -60,8 +59,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-=======
 
         //Go to Calendar
         goToCalendar.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +68,6 @@ public class Login extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
->>>>>>> 474ede4525525268fd22b1325adcb4cba52f0e4d
 
         //login btn call method
         loginBtn.setOnClickListener(new View.OnClickListener() {

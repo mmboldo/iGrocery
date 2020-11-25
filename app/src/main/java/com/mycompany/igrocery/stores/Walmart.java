@@ -4,8 +4,8 @@ public class Walmart {
 
     public String name = "Walmart";
     public String address = "805 Boyd St";
-    public float latitude = (float) 49.191794;
-    public float longitude = (float) -122.948958;
+    public String latitude = "49.191794";
+    public String longitude = "-122.948958";
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class Walmart {
         return address;
     }
 
-    public float getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public float getLongitude() {
+    public String getLongitude() {
         return longitude;
     }
 }

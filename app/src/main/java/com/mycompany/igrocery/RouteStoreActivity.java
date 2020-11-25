@@ -1,5 +1,10 @@
 package com.mycompany.igrocery;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -8,8 +13,17 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -19,7 +33,6 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.SettingsClient;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,48 +43,19 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.internal.impl.net.pablo.PlaceResult;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.TypeFilter;
-import com.google.android.libraries.places.api.net.FetchPlaceRequest;
-import com.google.android.libraries.places.api.net.FetchPlaceResponse;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.mancj.materialsearchbar.MaterialSearchBar;
-import com.mancj.materialsearchbar.adapter.SuggestionsAdapter;
 import com.skyfishjy.library.RippleBackground;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import android.os.Handler;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-
-public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class RouteStoreActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationProviderClient;
@@ -86,11 +70,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private Button btnFind;
     private RippleBackground rippleBg;
 
+    private double doubleLa;
+    private double doubleLo;
+
     private final float DEFAULT_ZOOM = 15;
+
 
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +92,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
         mapView = mapFragment.getView();
 
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapActivity.this);
-        Places.initialize(MapActivity.this, getString(R.string.map_key));
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(RouteStoreActivity.this);
+        Places.initialize(RouteStoreActivity.this, getString(R.string.map_key));
         placesClient = Places.createClient(this);
         final AutocompleteSessionToken token = AutocompleteSessionToken.newInstance();
+
+        doubleLa = Double.parseDouble(getIntent().getStringExtra("storeLatitude"));
+        doubleLo = Double.parseDouble(getIntent().getStringExtra("storeLongitude"));
+
+
 
 
         materialSearchBar.setOnSearchActionListener(new MaterialSearchBar.OnSearchActionListener() {
@@ -133,7 +125,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 }
             }
         });
-
 
         materialSearchBar.addTextChangeListener(new TextWatcher() {
             @Override
@@ -178,80 +169,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
 
-        materialSearchBar.setSuggstionsClickListener(new SuggestionsAdapter.OnItemViewClickListener() {
-            @Override
-            public void OnItemClickListener(int position, View v) {
-                if (position >= predictionList.size()) {
-                    return;
-                }
-                AutocompletePrediction selectedPrediction = predictionList.get(position);
-                String suggestion = materialSearchBar.getLastSuggestions().get(position).toString();
-                materialSearchBar.setText(suggestion);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        materialSearchBar.clearSuggestions();
-                    }
-                }, 1000);
-                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                if (imm != null)
-                    imm.hideSoftInputFromWindow(materialSearchBar.getWindowToken(), InputMethodManager.HIDE_IMPLICIT_ONLY);
-                final String placeId = selectedPrediction.getPlaceId();
-                List<Place.Field> placeFields = Arrays.asList(Place.Field.LAT_LNG);
-
-                FetchPlaceRequest fetchPlaceRequest = FetchPlaceRequest.builder(placeId, placeFields).build();
-                placesClient.fetchPlace(fetchPlaceRequest).addOnSuccessListener(new OnSuccessListener<FetchPlaceResponse>() {
-                    @Override
-                    public void onSuccess(FetchPlaceResponse fetchPlaceResponse) {
-                        Place place = fetchPlaceResponse.getPlace();
-                        Log.i("mytag", "Place found: " + place.getName());
-                        LatLng latLngOfPlace = place.getLatLng();
-                        if (latLngOfPlace != null) {
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngOfPlace, DEFAULT_ZOOM));
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        if (e instanceof ApiException) {
-                            ApiException apiException = (ApiException) e;
-                            apiException.printStackTrace();
-                            int statusCode = apiException.getStatusCode();
-                            Log.i("mytag", "place not found: " + e.getMessage());
-                            Log.i("mytag", "status code: " + statusCode);
-                        }
-                    }
-                });
-            }
-
-            @Override
-            public void OnItemDeleteListener(int position, View v) {
-
-            }
-        });
-        btnFind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LatLng currentMarkerLocation = mMap.getCameraPosition().target;
-                rippleBg.startRippleAnimation();
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        rippleBg.stopRippleAnimation();
-                        startActivity(new Intent(MapActivity.this, StoreSelection.class));
-                        finish();
-                    }
-                }, 3000);
-
-            }
-        });
-
-
+        materialSearchBar.setText(getIntent().getStringExtra("storeAddress"));
 
         //Drawer Navigation
         drawerLayout = findViewById(R.id.drawer_layout);
 
+        //find button
+        btnFind = findViewById(R.id.btn_find);
+        String value = "Route to "+ getIntent().getStringExtra("storeName");
+        btnFind.setText(value);
 
     }
 
@@ -278,23 +204,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationRequest);
 
-        SettingsClient settingsClient = LocationServices.getSettingsClient(MapActivity.this);
+        SettingsClient settingsClient = LocationServices.getSettingsClient(RouteStoreActivity.this);
         Task<LocationSettingsResponse> task = settingsClient.checkLocationSettings(builder.build());
 
-        task.addOnSuccessListener(MapActivity.this, new OnSuccessListener<LocationSettingsResponse>() {
+        task.addOnSuccessListener(RouteStoreActivity.this, new OnSuccessListener<LocationSettingsResponse>() {
             @Override
             public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
                 getDeviceLocation();
             }
         });
 
-        task.addOnFailureListener(MapActivity.this, new OnFailureListener() {
+        task.addOnFailureListener(RouteStoreActivity.this, new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 if (e instanceof ResolvableApiException) {
                     ResolvableApiException resolvable = (ResolvableApiException) e;
                     try {
-                        resolvable.startResolutionForResult(MapActivity.this, 51);
+                        resolvable.startResolutionForResult(RouteStoreActivity.this, 51);
                     } catch (IntentSender.SendIntentException e1) {
                         e1.printStackTrace();
                     }
@@ -332,6 +258,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     public void onComplete(@NonNull Task<Location> task) {
                         if (task.isSuccessful()) {
                             mLastKnownLocation = task.getResult();
+                            //Set store longitude and latitude
+                            mLastKnownLocation.setLongitude(doubleLo);
+                            mLastKnownLocation.setLatitude(doubleLa);
                             if (mLastKnownLocation != null) {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                             } else {
@@ -347,6 +276,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                             return;
                                         }
                                         mLastKnownLocation = locationResult.getLastLocation();
+                                        //Set store longitude and latitude
+                                        mLastKnownLocation.setLongitude(doubleLo);
+                                        mLastKnownLocation.setLatitude(doubleLa);
                                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
                                         mFusedLocationProviderClient.removeLocationUpdates(locationCallback);
                                     }
@@ -355,7 +287,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             }
                         } else {
-                            Toast.makeText(MapActivity.this, "unable to get last location", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RouteStoreActivity.this, "unable to get last location", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -384,7 +316,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
 
 
@@ -403,7 +335,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void ClickStoreMap(View view) {
-        redirectActivity(this, StoreMap.class);
+        recreate();
     }
 
     public void logout(Activity activity) {
@@ -419,7 +351,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 System.exit(0);*/
 
                 //Back to login page
-                Intent intent = new Intent(MapActivity.this, Login.class);
+                Intent intent = new Intent(RouteStoreActivity.this, Login.class);
                 activity.startActivity(intent);
             }
         });
@@ -462,7 +394,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             //Back button
             case R.id.nav_editList:
                 //If this activity started from other activity
-                Intent intent1 = new Intent(MapActivity.this, EditListItem.class);
+                Intent intent1 = new Intent(RouteStoreActivity.this, EditListItem.class);
                 startActivity(intent1);
                 break;
 
@@ -471,7 +403,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             */
             case R.id.nav_shareList:
                 //addfav (heart icon) was clicked, Insert your after click code here.
-                Intent intent2 = new Intent(MapActivity.this, ShareList.class);
+                Intent intent2 = new Intent(RouteStoreActivity.this, ShareList.class);
                 startActivity(intent2);
                 break;
 
@@ -479,5 +411,4 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
