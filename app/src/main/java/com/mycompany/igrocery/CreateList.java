@@ -51,8 +51,6 @@ public class CreateList extends AppCompatActivity {
         userEmail = user.getEmail().replace(".", "&");
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +106,7 @@ public class CreateList extends AppCompatActivity {
         getSupportActionBar().setTitle("");
     }
 
-
+    // START: Methods for Nav menu
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
     }
@@ -130,7 +128,6 @@ public class CreateList extends AppCompatActivity {
         recreate();
     }
 
-
     public void ClickSearch(View view){
         redirectActivity(this, PermissionActivity.class);
     }
@@ -143,6 +140,12 @@ public class CreateList extends AppCompatActivity {
 
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(CreateList.this, ShareList.class);
+        startActivity(intent2);
     }
 
     public void ClickStoreMap(View view) {
@@ -188,10 +191,9 @@ public class CreateList extends AppCompatActivity {
         //close drawer
         closeDrawer(drawerLayout);
     }
+    // FINISH: Methods for Nav menu
 
     //toolbar settings
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_navigation, menu);

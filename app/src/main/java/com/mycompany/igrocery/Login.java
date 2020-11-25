@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -40,10 +39,13 @@ public class Login extends AppCompatActivity {
         passLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
         emailInput = (TextInputEditText) findViewById(R.id.email);
         passInput = (TextInputEditText) findViewById(R.id.password);
-        loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
+        loginBtn = (AppCompatButton)findViewById(R.id.btn_ShareList);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89293e730f399cab0d134c16a11f9e32f4009a1b
         goToCalendar = (AppCompatButton)findViewById(R.id.tempBtn2);
 
         //temp button only for test
@@ -59,6 +61,10 @@ public class Login extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89293e730f399cab0d134c16a11f9e32f4009a1b
 
         //Go to Calendar
         goToCalendar.setOnClickListener(new View.OnClickListener() {
@@ -68,6 +74,10 @@ public class Login extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 89293e730f399cab0d134c16a11f9e32f4009a1b
 
         //login btn call method
         loginBtn.setOnClickListener(new View.OnClickListener() {
