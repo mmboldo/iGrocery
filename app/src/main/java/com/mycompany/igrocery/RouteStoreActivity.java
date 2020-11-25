@@ -326,9 +326,6 @@ public class RouteStoreActivity extends AppCompatActivity implements OnMapReadyC
     public void ClickLogout(View view){
         logout(this);
     }
-    public void ClickSelectStore(View view){
-        redirectActivity(this, StoreSelection.class);
-    }
 
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);

@@ -134,9 +134,6 @@ public class CreateList extends AppCompatActivity {
     public void ClickLogout(View view){
         logout(this);
     }
-    public void ClickSelectStore(View view){
-        redirectActivity(this, StoreSelection.class);
-    }
 
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
@@ -193,6 +190,5 @@ public class CreateList extends AppCompatActivity {
     }
     // FINISH: Methods for Nav menu
 
-    //toolbar settings
 
 }

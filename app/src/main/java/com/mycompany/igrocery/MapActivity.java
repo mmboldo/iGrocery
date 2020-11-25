@@ -384,7 +384,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
 
 
@@ -393,9 +393,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
     public void ClickLogout(View view){
         logout(this);
-    }
-    public void ClickSelectStore(View view){
-        redirectActivity(this, StoreSelection.class);
     }
 
     public void ClickCalendar(View view) {
