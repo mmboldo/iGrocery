@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,6 +25,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,6 +74,7 @@ public class Calendar extends AppCompatActivity {
 
     MyGridAdapter myGridAdapter;
     AlertDialog alertDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,21 +246,27 @@ public class Calendar extends AppCompatActivity {
             drawerLayout.closeDrawer(GravityCompat.START);
         }
     }
+
     public void ClickList(View view){
         redirectActivity(this, CreateList.class);
     }
+
+
     public void ClickSearch(View view){
         redirectActivity(this, MapActivity.class);
     }
     public void ClickLogout(View view){
         logout(this);
     }
+
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
+
     public void ClickStoreMap(View view) {
         redirectActivity(this, StoreMap.class);
     }
+
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");
@@ -280,17 +288,23 @@ public class Calendar extends AppCompatActivity {
         });
         builder.show();
     }
+
+
     public static void redirectActivity(Activity activity, Class aclass) {
         Intent intent = new Intent(activity, aclass);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
+
     @Override
     protected void onPause() {
         super.onPause();
         //close drawer
         closeDrawer(drawerLayout);
     }
+    //toolbar settings
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_navigation, menu);

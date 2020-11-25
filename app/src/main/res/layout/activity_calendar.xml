@@ -13,14 +13,20 @@
         android:background="#F4F4F4"
         android:orientation="vertical">
 
+
         <include
             layout="@layout/main_toolbar"/>
+
+
+    <include
+        layout="@layout/main_toolbar"/>
 
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:src="@drawable/logo" />
+
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -13,6 +13,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,13 +43,12 @@ public class CreateList extends AppCompatActivity {
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
 
-    private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
-    private String userId, eventName;
+    private String userEmail;
 
     public void getCurrentUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
+        userEmail = user.getEmail().replace(".", "&");
     }
 
     @Override
@@ -59,8 +58,8 @@ public class CreateList extends AppCompatActivity {
 
         btnAddNew = findViewById(R.id.btnAddNew);
         getCurrentUser();
-
         btnAddNew.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateList.this, AddGroceryItem.class);
@@ -74,13 +73,13 @@ public class CreateList extends AppCompatActivity {
         list = new ArrayList<GroceryList>();
 
         // getting data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userId: " + userId);
-
+        reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
         reference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 // retrieve data and create layout
+
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     GroceryList p = dataSnapshot.getValue(GroceryList.class);
                     list.add(p);
@@ -186,8 +185,6 @@ public class CreateList extends AppCompatActivity {
     }
 
     //toolbar settings
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_navigation, menu);

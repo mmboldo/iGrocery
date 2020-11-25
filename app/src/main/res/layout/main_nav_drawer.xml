@@ -90,6 +90,7 @@
             android:layout_marginEnd="48dp"
             android:src="@drawable/indoornav" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

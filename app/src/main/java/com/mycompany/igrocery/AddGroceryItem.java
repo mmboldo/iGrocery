@@ -34,11 +34,11 @@ public class AddGroceryItem extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
-    private String userId, eventName;
+    private String userEmail;
 
     public void getCurrentUser() {
         user = FirebaseAuth.getInstance().getCurrentUser();
-        userId = user.getUid();
+        userEmail = user.getEmail().replace(".", "&");
     }
 
     @Override
@@ -59,17 +59,16 @@ public class AddGroceryItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // insert data to database
-                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userId: " + userId).child("GroceryItem"+itemNum);
+                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
+
+                reference.child("itemTitle").setValue(addItemTitle.getText().toString());
+                reference.child("itemDescription").setValue(addItemDescription.getText().toString());
+                reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
+                reference.child("itemKey").setValue(itemKey);
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                        reference.child("itemTitle").setValue(addItemTitle.getText().toString());
-                        reference.child("itemDescription").setValue(addItemDescription.getText().toString());
-                        reference.child("itemQuantity").setValue(addItemQuantity.getText().toString());
-                        reference.child("itemKey").setValue(itemKey);
-
                         Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
                         startActivity(intent);
                     }

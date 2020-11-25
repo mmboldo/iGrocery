@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity {
         //temp button only for test
 
 
+
         //Go to new User Registration
         newUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,7 @@ public class Login extends AppCompatActivity {
         });
 
 
+
         //Go to Calendar
         goToCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +68,7 @@ public class Login extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+
 
         //login btn call method
         loginBtn.setOnClickListener(new View.OnClickListener() {
