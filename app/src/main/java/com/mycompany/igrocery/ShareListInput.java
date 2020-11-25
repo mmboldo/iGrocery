@@ -26,7 +26,8 @@ public class ShareListInput extends AppCompatActivity {
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ShareListInput.this, AddGroceryItem.class);
+
+                Intent intent = new Intent(ShareListInput.this, CreateList.class);
                 intent.putExtra("userEmail", share.getText().toString());
 
                 //Toast.makeText(ShareListInput.this, share.getText().toString(), Toast.LENGTH_LONG).show();

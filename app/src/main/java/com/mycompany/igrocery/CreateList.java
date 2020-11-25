@@ -53,14 +53,14 @@ public class CreateList extends AppCompatActivity {
         try{
             String sharedUser = intent.getStringExtra("userEmail");
             if(sharedUser != null){
-                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail);
                 userEmail = sharedUser.replace(".", "&");
-                //sharing = true;
+                reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail);
             }
             else{
                 user = FirebaseAuth.getInstance().getCurrentUser();
                 userEmail = user.getEmail().replace(".", "&");
-            }}catch(Exception e){
+            }
+        }catch(Exception e){
             user = FirebaseAuth.getInstance().getCurrentUser();
             userEmail = user.getEmail().replace(".", "&");
         }
@@ -99,7 +99,7 @@ public class CreateList extends AppCompatActivity {
         String sharedUser = i.getStringExtra("userEmail");
         if(sharedUser != null){
 
-            userEmail = sharedUser;
+            userEmail = sharedUser.replace(".", "&");
             reference = FirebaseDatabase.getInstance().getReference().child("GroceryList").child("userEmail: " + userEmail);
             //sharing = true;
         }
