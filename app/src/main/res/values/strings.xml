@@ -66,4 +66,6 @@
     <string name="saveonfoods">Save On Foods - Aisle Details</string>
     <string name="superstore">Real Canadian Superstore - Aisle Details</string>
     <string name="saveevent">Save Event</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
