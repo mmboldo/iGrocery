@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
         //find the ids
         emailLayout = (TextInputLayout) findViewById(R.id.nameInputLayout);
         passLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
-        emailInput = (TextInputEditText) findViewById(R.id.EditTextSharedEmail);
+        emailInput = (TextInputEditText) findViewById(R.id.email);
         passInput = (TextInputEditText) findViewById(R.id.password);
         loginBtn = (AppCompatButton)findViewById(R.id.btn_ShareList);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
