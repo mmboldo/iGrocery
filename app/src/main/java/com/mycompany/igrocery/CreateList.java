@@ -106,7 +106,7 @@ public class CreateList extends AppCompatActivity {
         getSupportActionBar().setTitle("");
     }
 
-
+    // START: Methods for Nav menu
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
     }
@@ -127,7 +127,6 @@ public class CreateList extends AppCompatActivity {
     public void ClickList(View view){
         recreate();
     }
-
 
     public void ClickSearch(View view){
         redirectActivity(this, MapActivity.class);
@@ -189,6 +188,7 @@ public class CreateList extends AppCompatActivity {
         //close drawer
         closeDrawer(drawerLayout);
     }
+    // FINISH: Methods for Nav menu
 
     //toolbar settings
     @Override
