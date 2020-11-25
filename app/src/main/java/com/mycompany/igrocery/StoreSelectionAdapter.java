@@ -14,9 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mycompany.igrocery.stores.GroceryStore;
-import com.mycompany.igrocery.stores.SaveOnFoods;
-import com.mycompany.igrocery.stores.Superstore;
-import com.mycompany.igrocery.stores.Walmart;
+
 
 public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAdapter.MyViewHolder> {
 

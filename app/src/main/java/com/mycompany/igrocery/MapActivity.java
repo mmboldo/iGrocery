@@ -449,35 +449,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     //toolbar settings
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            //Back button
-            case R.id.nav_editList:
-                //If this activity started from other activity
-                Intent intent1 = new Intent(MapActivity.this, EditListItem.class);
-                startActivity(intent1);
-                break;
-
-            /*If you wish to open new activity and close this one
-            startNewActivity();
-            */
-            case R.id.nav_shareList:
-                //addfav (heart icon) was clicked, Insert your after click code here.
-                Intent intent2 = new Intent(MapActivity.this, ShareList.class);
-                startActivity(intent2);
-                break;
 
 
-        }
-        return super.onOptionsItemSelected(item);
-    }
+
 
 }

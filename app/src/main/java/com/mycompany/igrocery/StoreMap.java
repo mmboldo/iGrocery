@@ -290,14 +290,7 @@ public class StoreMap extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
-    //toolbar settings
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
 
 }

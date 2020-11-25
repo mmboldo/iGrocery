@@ -17,10 +17,6 @@
         <include
             layout="@layout/main_toolbar"/>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 89293e730f399cab0d134c16a11f9e32f4009a1b
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"

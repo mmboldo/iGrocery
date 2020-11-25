@@ -191,9 +191,4 @@ public class EditListItem extends AppCompatActivity {
     //toolbar settings
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }
