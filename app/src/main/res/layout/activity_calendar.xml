@@ -15,16 +15,133 @@
 
         <include
             layout="@layout/main_toolbar"/>
+
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:src="@drawable/logo" />
 
-        <com.mycompany.igrocery.CustomCalendar
-            android:id="@+id/custom_calendar_view"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></com.mycompany.igrocery.CustomCalendar>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:background="@color/greenIGrocery">
+
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/previousbtn"
+                android:background="@mipmap/previousicon"
+                android:layout_margin="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:text="CurrentDate"
+                android:id="@+id/current_Date"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="30sp"
+                android:layout_weight="3"/>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/nextbtn"
+                android:background="@mipmap/nexticon"
+                android:layout_margin="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:background="@color/darkgreencalendar">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Sun"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Mon"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tue"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Wed"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Thu"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Fri"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Sat"
+                android:background="@color/darkgreencalendar"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="7">
+        </GridView>
+
     </LinearLayout>
     <RelativeLayout
         android:layout_width="300dp"
