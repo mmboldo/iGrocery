@@ -51,8 +51,6 @@ public class CreateList extends AppCompatActivity {
         userEmail = user.getEmail().replace(".", "&");
     }
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -183,8 +181,6 @@ public class CreateList extends AppCompatActivity {
     }
 
     //toolbar settings
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_navigation, menu);
