@@ -140,6 +140,12 @@ public class CreateList extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
 
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(CreateList.this, ShareList.class);
+        startActivity(intent2);
+    }
+
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");
