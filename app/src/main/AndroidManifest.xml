@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.IGrocery">
-        <activity android:name=".RouteStoreActivity"></activity>
+        <activity android:name=".SharedList"></activity>
+        <activity android:name=".RouteStoreActivity" />
         <activity android:name=".Calendar" />
 
         <meta-data
