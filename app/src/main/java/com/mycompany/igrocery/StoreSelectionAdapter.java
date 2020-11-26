@@ -13,18 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mycompany.igrocery.stores.SaveOnFoods;
-import com.mycompany.igrocery.stores.Superstore;
-import com.mycompany.igrocery.stores.Walmart;
+import com.mycompany.igrocery.stores.GroceryStore;
+
 
 public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAdapter.MyViewHolder> {
 
     String data1[];
     int images[];
     Context context;
-    Superstore superstore = new Superstore();
-    SaveOnFoods saveOnFoods = new SaveOnFoods();
-    Walmart walmart = new Walmart();
+    GroceryStore superstore = new GroceryStore("Real Canadian Superstore", "4700 Kingsway, Burnaby","49.22615","-122.999113");
+    GroceryStore saveOnFoods = new GroceryStore("Save On Foods","4469 Kingsway, Burnaby","49.231050","-123.004530");
+    GroceryStore walmart = new GroceryStore("Walmart","4545 Central Blvd, Burnaby","49.224490","-123.000000");
 
     public StoreSelectionAdapter(Context ct, String s1[], int img[]){
         context = ct;
@@ -48,7 +47,7 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         holder.tv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Test.class);
+                Intent intent = new Intent(context, RouteStoreActivity.class);
                 if(position == 0){
                     intent.putExtra("storeName", superstore.getName());
                     intent.putExtra("storeAddress", superstore.getAddress());
@@ -77,7 +76,7 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         holder.iv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Test.class);
+                Intent intent = new Intent(context, RouteStoreActivity.class);
                 if(position == 0){
                     intent.putExtra("storeName", superstore.getName());
                     intent.putExtra("storeAddress", superstore.getAddress());

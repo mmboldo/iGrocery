@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -40,7 +39,7 @@ public class Login extends AppCompatActivity {
         passLayout = (TextInputLayout) findViewById(R.id.passwordInputLayout);
         emailInput = (TextInputEditText) findViewById(R.id.email);
         passInput = (TextInputEditText) findViewById(R.id.password);
-        loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
+        loginBtn = (AppCompatButton)findViewById(R.id.btn_ShareList);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
