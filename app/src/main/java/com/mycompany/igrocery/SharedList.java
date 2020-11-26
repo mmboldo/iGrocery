@@ -59,7 +59,7 @@ public class SharedList extends AppCompatActivity {
         sharedListUser = new ArrayList<SharedListUser>();
 
         //get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("ListPermissions").child("userEmail: " + userEmail);
+        reference = FirebaseDatabase.getInstance().getReference().child("ListsPermissions").child("userEmail: " + userEmail);
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
