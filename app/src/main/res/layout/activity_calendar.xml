@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Calendar"
     android:orientation="vertical"
-    android:id="@+id/calendar_layout">
+    android:id="@+id/drawer_layout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,7 +14,6 @@
         android:background="#F4F4F4"
         android:orientation="vertical">
         <include
-            android:id="@+id/include"
             layout="@layout/main_toolbar" />
 
         <FrameLayout
@@ -26,10 +25,12 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_events" />
 
+
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="15dp"
             android:src="@drawable/logo" />
 
         <ScrollView
@@ -122,14 +123,15 @@
             </LinearLayout>
 
         </ScrollView>
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/white"
-            >
-            <include layout="@layout/main_nav_drawer" />
 
-        </RelativeLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        >
+        <include layout="@layout/main_nav_drawer" />
+
+    </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

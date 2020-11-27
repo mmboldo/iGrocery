@@ -142,12 +142,12 @@ public class Calendar extends AppCompatActivity {
             }
         });
         //Drawer Navigation
-        drawerLayout = findViewById(R.id.calendar_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_view);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("");
     }
 
     public void getCurrentUser() {
@@ -177,8 +177,9 @@ public class Calendar extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
-    public void ClickSearch(View view){
-        redirectActivity(this, MapActivity.class);
+
+    public void ClickSearchStore(View view){
+        redirectActivity(this, PermissionActivity.class);
     }
 
     public void ClickLogout(View view){
@@ -191,6 +192,15 @@ public class Calendar extends AppCompatActivity {
 
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
+    }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        redirectActivity(this, ShareList.class);
     }
 
     public void logout(Activity activity) {

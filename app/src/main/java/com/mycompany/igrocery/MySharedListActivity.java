@@ -1,6 +1,5 @@
 package com.mycompany.igrocery;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -12,70 +11,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Random;
-
-public class ShareList extends AppCompatActivity {
-
-    DatabaseReference reference;
-
-    Button btnShare;
-    EditText sharedName, sharedEmail;
-    Integer itemNum = new Random().nextInt();
-
+public class MySharedListActivity extends AppCompatActivity {
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
-
-    private FirebaseUser user; //Firebase obj
-    private String userEmail;
-
-    public void getCurrentUser() {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userEmail = user.getEmail();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share_list);
-
-        // sharedName = findViewById(R.id.EditTextSharedName);
-        sharedEmail = findViewById(R.id.EditTextSharedEmail);
-        btnShare = findViewById(R.id.btn_ShareList);
-
-        getCurrentUser();
-
-        btnShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String sharedEmail1 = sharedEmail.getText().toString().replace(".","&");
-                reference = FirebaseDatabase.getInstance().getReference().child(("ListsPermissions")).child("userEmail: " + sharedEmail1).child("Invitations"+itemNum);
-                reference.child("listOwner").setValue(userEmail);
-
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        Intent intent = new Intent(ShareList.this, CreateList.class);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
+        setContentView(R.layout.activity_my_shared_list);
 
         //Drawer Navigation
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -85,7 +29,6 @@ public class ShareList extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
     }
-
     // START: Methods for Nav menu
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
@@ -118,20 +61,19 @@ public class ShareList extends AppCompatActivity {
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
-
-
-    public void ClickStoreMap(View view) {
-        redirectActivity(this, StoreMap.class);
-    }
     //My Shared List for Edurado
     public void ClickMyShared(View view) {
-        redirectActivity(this, MySharedListActivity.class);
+        redirectActivity(this, StoreMap.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {
-        Intent intent2 = new Intent(ShareList.this, ShareList.class);
+        Intent intent2 = new Intent(MySharedListActivity.this, ShareList.class);
         startActivity(intent2);
+    }
+
+    public void ClickStoreMap(View view) {
+        redirectActivity(this, StoreMap.class);
     }
 
     public void logout(Activity activity) {
@@ -147,7 +89,7 @@ public class ShareList extends AppCompatActivity {
                 System.exit(0);*/
 
                 //Back to login page
-                Intent intent = new Intent(ShareList.this, Login.class);
+                Intent intent = new Intent(MySharedListActivity.this, Login.class);
                 activity.startActivity(intent);
             }
         });
