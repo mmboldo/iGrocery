@@ -44,6 +44,7 @@ public class ShareList extends AppCompatActivity {
     ArrayList<SharedListUser> sharedListUser; //list
     SharedListAdapter sharedListAdapter;
 
+
     private FirebaseUser user; //Firebase obj
     private String userEmail;
 
