@@ -229,6 +229,7 @@ public class StoreMap extends AppCompatActivity {
     public void ClickLogo(View view){
         closeDrawer(drawerLayout);
     }
+
     public static void closeDrawer(DrawerLayout drawerLayout){
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -239,10 +240,15 @@ public class StoreMap extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
+<<<<<<< HEAD
 
     public void ClickSearchStore(View view){
+=======
+    public void ClickSearch(View view){
+>>>>>>> bec8e9453ba68311fb2b24a0208381e8d2c3cda8
         redirectActivity(this, MapActivity.class);
     }
+
     public void ClickLogout(View view){
         logout(this);
     }
@@ -299,8 +305,4 @@ public class StoreMap extends AppCompatActivity {
         //close drawer
         closeDrawer(drawerLayout);
     }
-
-
-
-
 }

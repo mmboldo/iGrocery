@@ -99,8 +99,13 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+<<<<<<< HEAD
         android:background="@color/white">
 
+=======
+        android:background="@color/white"
+        >
+>>>>>>> bec8e9453ba68311fb2b24a0208381e8d2c3cda8
         <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>

@@ -1,13 +1,20 @@
 package com.mycompany.igrocery;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +53,9 @@ public class EventsFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    public static EventsFragment newInstance() {
+        return new EventsFragment();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,10 +69,27 @@ public class EventsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_events, container, false);
-        final ListView listView = rootView.findViewById(R.id.eventListView);
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        View view = inflater.inflate(R.layout.fragment_events, container, false);
+        Button closeBtn = view.findViewById(R.id.closeFragBtn);
+        ArrayList<String> events = getArguments().getStringArrayList("eventsArray");
+
+        events.toArray();
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+                android.R.layout.simple_list_item_1, events);
+
+        ListView listView = (ListView)view.findViewById(R.id.eventListView);
+        listView.setAdapter(adapter);
+
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(view.getContext(), Calendar.class) ;
+                startActivity(myIntent);
+            }
+        });
+
+        return view;
     }
+
 }
