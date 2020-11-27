@@ -2,15 +2,21 @@ package com.mycompany.igrocery;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -63,12 +69,14 @@ public class Calendar extends AppCompatActivity {
     //fragment variable
     FragmentTransaction fragmentTransaction;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
         getCurrentUser();
+        createNotification();
 
         //hook ids
         calendarView = (CalendarView)findViewById(R.id.calendarView2);
@@ -80,6 +88,7 @@ public class Calendar extends AppCompatActivity {
         arrayEvents = new ArrayList<>();
         arrayStringlist = new ArrayList<>();
 
+        //set the event by clicking on calendar day
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -88,6 +97,8 @@ public class Calendar extends AppCompatActivity {
                 date = monthName + " " + dayOfMonth + ", " + year;
                 dateTV.setText(date);
                 picker.setIs24HourView(false);
+
+                //save the event on firebase
                 saveBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -96,23 +107,37 @@ public class Calendar extends AppCompatActivity {
                         hour = picker.getCurrentHour();
                         minute = picker.getCurrentMinute();
                         time = String.format("%02d:%02d", hour, minute);
+
+                        //Event fields must be informed
                         if(eventET.getText().toString().trim().equals("")) {
                             Toast.makeText(Calendar.this, "Please add an Event Name.", Toast.LENGTH_SHORT).show();
                             return;
                         } else {
                             Events eventsToAdd = new Events(eventET.getText().toString(), date, time);
-
                             reference.child(userEmail).child(eventET.getText().toString()).setValue(eventsToAdd);
-
                             Toast.makeText(Calendar.this, "Your Event has been created!", Toast.LENGTH_SHORT).show();
                         }
 
+                        //notification alarm of iGrocery Events
+                        Toast.makeText(Calendar.this, "iGrocery will send you a notification alert.", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(Calendar.this, AlertEvents.class);
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(Calendar.this, 0, intent, 0);
+
+                        java.util.Calendar myAlarmDate = java.util.Calendar.getInstance();
+                        myAlarmDate.setTimeInMillis(System.currentTimeMillis());
+                        myAlarmDate.set(year, month, dayOfMonth, hour, minute, 0);
+                        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+                        alarmManager.set(AlarmManager.RTC_WAKEUP, myAlarmDate.getTimeInMillis(), pendingIntent);
 
                     }
                 });
             }
         });
 
+        //getting the date from firebase
+        //display events on listview fragment
         mFirebase = FirebaseDatabase.getInstance().getReference().child("Events").child(userEmail);
         mFirebase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,6 +186,22 @@ public class Calendar extends AppCompatActivity {
         userEmail = user.getEmail().replace(".", "&");
     }
 
+    //method to create the channel
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotification() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "Event Channel";
+            String description = "Channel to notify iGrocery events";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("notificationEvent", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    //bellow methods for menu bar
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
     }
@@ -182,7 +223,6 @@ public class Calendar extends AppCompatActivity {
     public void ClickList(View view){
         redirectActivity(this, CreateList.class);
     }
-
 
     public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
