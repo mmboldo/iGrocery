@@ -30,8 +30,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -148,7 +151,11 @@ public class Calendar extends AppCompatActivity {
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                date = month + "/" + dayOfMonth + "/" + year;
+
+                SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
+                String monthName = monthFormat.format(month);
+                date = monthName + " " + dayOfMonth + ", " + year;
+
                 dateTV.setText(date);
                 picker.setIs24HourView(false);
                 saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -158,11 +165,12 @@ public class Calendar extends AppCompatActivity {
                         int hour, minute;
                         hour = picker.getCurrentHour();
                         minute = picker.getCurrentMinute();
-                        time = hour + ":" + minute;
-
+                        time = String.format("%02d:%02d", hour, minute);
                         Events eventsToAdd = new Events(eventET.getText().toString(), date, time);
 
                         reference.child(userEmail).child(eventET.getText().toString()).setValue(eventsToAdd);
+
+                        Toast.makeText(Calendar.this, "Your Event has been created!", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -178,8 +186,9 @@ public class Calendar extends AppCompatActivity {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Events eachEvent = dataSnapshot.getValue(Events.class);
                     arrayEvents.add(eachEvent);
-                    Map<String, Events> map = (Map<String, Events>)dataSnapshot.getValue();
-                    arrayStringlist.add(map.entrySet() + "");
+                    arrayStringlist.add("Event: " + eachEvent.EVENT);
+                    arrayStringlist.add("  \u2022 Time: " + eachEvent.TIME);
+                    arrayStringlist.add("  \u2022 Date: " + eachEvent.DATE);
                 }
 
                 Bundle bundle = new Bundle();
