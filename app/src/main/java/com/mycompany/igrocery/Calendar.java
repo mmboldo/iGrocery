@@ -86,7 +86,6 @@ public class Calendar extends AppCompatActivity {
                 SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
                 String monthName = monthFormat.format(month);
                 date = monthName + " " + dayOfMonth + ", " + year;
-
                 dateTV.setText(date);
                 picker.setIs24HourView(false);
                 saveBtn.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +96,18 @@ public class Calendar extends AppCompatActivity {
                         hour = picker.getCurrentHour();
                         minute = picker.getCurrentMinute();
                         time = String.format("%02d:%02d", hour, minute);
-                        Events eventsToAdd = new Events(eventET.getText().toString(), date, time);
+                        if(eventET.getText().toString().trim().equals("")) {
+                            Toast.makeText(Calendar.this, "Please add an Event Name.", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            Events eventsToAdd = new Events(eventET.getText().toString(), date, time);
 
-                        reference.child(userEmail).child(eventET.getText().toString()).setValue(eventsToAdd);
+                            reference.child(userEmail).child(eventET.getText().toString()).setValue(eventsToAdd);
 
-                        Toast.makeText(Calendar.this, "Your Event has been created!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Calendar.this, "Your Event has been created!", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
                 });
             }
