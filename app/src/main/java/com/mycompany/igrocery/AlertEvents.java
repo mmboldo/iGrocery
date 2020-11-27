@@ -11,7 +11,7 @@ public class AlertEvents extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "notificationEvent").
-                setSmallIcon(R.drawable.ic_baseline_alarm_24).
+                setSmallIcon(R.drawable.icon).
                 setContentTitle("You have an iGrocery Event").
                 setContentText("Don't forget to buy your groceries.").
                 setPriority(NotificationCompat.PRIORITY_DEFAULT);
