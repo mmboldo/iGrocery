@@ -17,7 +17,6 @@
         <include
             layout="@layout/main_toolbar"/>
 
-
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"

@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity {
         loginBtn = (AppCompatButton)findViewById(R.id.btn_ShareList);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         goToCalendar = (AppCompatButton)findViewById(R.id.tempBtn2);
 
         //temp button only for test

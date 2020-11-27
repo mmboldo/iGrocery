@@ -2,6 +2,7 @@ package com.mycompany.igrocery;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,17 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mycompany.igrocery.stores.GroceryStore;
+
+
 public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAdapter.MyViewHolder> {
 
     String data1[];
     int images[];
     Context context;
+    GroceryStore superstore = new GroceryStore("Real Canadian Superstore", "4700 Kingsway, Burnaby","49.22615","-122.999113");
+    GroceryStore saveOnFoods = new GroceryStore("Save On Foods","4469 Kingsway, Burnaby","49.231050","-123.004530");
+    GroceryStore walmart = new GroceryStore("Walmart","4545 Central Blvd, Burnaby","49.224490","-123.000000");
 
     public StoreSelectionAdapter(Context ct, String s1[], int img[]){
         context = ct;
@@ -40,9 +47,27 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         holder.tv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Login.class);
-                intent.putExtra("store", data1[position]);
-                Toast.makeText(context, data1[position], Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, RouteStoreActivity.class);
+                if(position == 0){
+                    intent.putExtra("storeName", superstore.getName());
+                    intent.putExtra("storeAddress", superstore.getAddress());
+                    intent.putExtra("storeLatitude", superstore.getLatitude());
+                    intent.putExtra("storeLongitude", superstore.getLongitude());
+                }
+                if(position == 1){
+                    intent.putExtra("storeName", saveOnFoods.getName());
+                    intent.putExtra("storeAddress", saveOnFoods.getAddress());
+                    intent.putExtra("storeLatitude", saveOnFoods.getLatitude());
+                    intent.putExtra("storeLongitude", saveOnFoods.getLongitude());
+                }
+                if(position == 2){
+                    intent.putExtra("storeName", walmart.getName());
+                    intent.putExtra("storeAddress", walmart.getAddress());
+                    intent.putExtra("storeLatitude", walmart.getLatitude());
+                    intent.putExtra("storeLongitude", walmart.getLongitude());;
+                }
+                //intent.putExtra("store", data1[position]);
+                //Toast.makeText(context, data1[position], Toast.LENGTH_LONG).show();
                 context.startActivity(intent);
             }
 
@@ -51,9 +76,27 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         holder.iv.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Login.class);
-                intent.putExtra("store", data1[position]);
-                Toast.makeText(context, data1[position], Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, RouteStoreActivity.class);
+                if(position == 0){
+                    intent.putExtra("storeName", superstore.getName());
+                    intent.putExtra("storeAddress", superstore.getAddress());
+                    intent.putExtra("storeLatitude", superstore.getLatitude());
+                    intent.putExtra("storeLongitude", superstore.getLongitude());
+                }
+                if(position == 1){
+                    intent.putExtra("storeName", saveOnFoods.getName());
+                    intent.putExtra("storeAddress", saveOnFoods.getAddress());
+                    intent.putExtra("storeLatitude", saveOnFoods.getLatitude());
+                    intent.putExtra("storeLongitude", saveOnFoods.getLongitude());
+                }
+                if(position == 2){
+                    intent.putExtra("storeName", walmart.getName());
+                    intent.putExtra("storeAddress", walmart.getAddress());
+                    intent.putExtra("storeLatitude", walmart.getLatitude());
+                    intent.putExtra("storeLongitude", walmart.getLongitude());;
+                }
+                //intent.putExtra("store", data1[position]);
+                //Toast.makeText(context, data1[position], Toast.LENGTH_LONG).show();
                 context.startActivity(intent);
             }
 

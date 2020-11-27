@@ -16,6 +16,9 @@ import android.os.Bundle;
 import android.provider.Contacts;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
+
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -305,10 +308,6 @@ public class Calendar extends AppCompatActivity {
     //toolbar settings
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 
 }
