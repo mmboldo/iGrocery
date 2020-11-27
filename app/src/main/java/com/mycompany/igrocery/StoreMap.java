@@ -290,12 +290,4 @@ public class StoreMap extends AppCompatActivity {
         //close drawer
         closeDrawer(drawerLayout);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-
 }
