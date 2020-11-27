@@ -55,4 +55,12 @@
             android:textColor="#FFFFFF"
             app:backgroundTint="#66CD00" />
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white">
+        <include layout="@layout/main_nav_drawer" />
+
+    </RelativeLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

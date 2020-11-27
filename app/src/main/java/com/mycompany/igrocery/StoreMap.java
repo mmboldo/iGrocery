@@ -117,12 +117,12 @@ public class StoreMap extends AppCompatActivity {
         });
 
         //Drawer Navigation
-        drawerLayout = findViewById(R.id.layout_storemap);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_view);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setTitle("");
+        getSupportActionBar().setTitle("");
     }
 
     private List<Stores> ReadFile() {
@@ -240,7 +240,7 @@ public class StoreMap extends AppCompatActivity {
     }
 
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, MapActivity.class);
     }
     public void ClickLogout(View view){
@@ -255,6 +255,16 @@ public class StoreMap extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
 
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(StoreMap.this, ShareList.class);
+        startActivity(intent2);
+    }
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");

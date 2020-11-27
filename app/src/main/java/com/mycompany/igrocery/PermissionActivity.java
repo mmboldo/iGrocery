@@ -2,6 +2,7 @@ package com.mycompany.igrocery;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -84,6 +85,10 @@ public class PermissionActivity extends AppCompatActivity {
 
         //Drawer Navigation
         drawerLayout = findViewById(R.id.drawer_layout);
+        //Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar_view);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("");
     }
 
         /*
@@ -125,6 +130,9 @@ public class PermissionActivity extends AppCompatActivity {
 
     public void ClickStoreMap(View view) {
         redirectActivity(this, StoreMap.class);
+    }
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
     }
 
     public void logout(Activity activity) {

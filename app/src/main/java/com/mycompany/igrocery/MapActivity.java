@@ -403,6 +403,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         redirectActivity(this, StoreMap.class);
     }
 
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(MapActivity.this, ShareList.class);
+        startActivity(intent2);
+    }
     public void logout(Activity activity) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Logout");

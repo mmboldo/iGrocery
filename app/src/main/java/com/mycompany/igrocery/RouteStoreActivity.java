@@ -320,7 +320,7 @@ public class RouteStoreActivity extends AppCompatActivity implements OnMapReadyC
     }
 
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
@@ -333,6 +333,16 @@ public class RouteStoreActivity extends AppCompatActivity implements OnMapReadyC
 
     public void ClickStoreMap(View view) {
         recreate();
+    }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(RouteStoreActivity.this, ShareList.class);
+        startActivity(intent2);
     }
 
     public void logout(Activity activity) {

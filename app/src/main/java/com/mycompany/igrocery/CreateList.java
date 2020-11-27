@@ -138,6 +138,10 @@ public class CreateList extends AppCompatActivity {
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {

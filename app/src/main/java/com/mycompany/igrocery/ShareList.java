@@ -108,7 +108,7 @@ public class ShareList extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
@@ -119,13 +119,19 @@ public class ShareList extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
 
-    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
-    public void shareMyList(View view) {
-        recreate();
-    }
 
     public void ClickStoreMap(View view) {
         redirectActivity(this, StoreMap.class);
+    }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        Intent intent2 = new Intent(ShareList.this, ShareList.class);
+        startActivity(intent2);
     }
 
     public void logout(Activity activity) {

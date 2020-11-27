@@ -143,6 +143,10 @@ public class EditListItem extends AppCompatActivity {
     public void ClickLogout(View view){
         logout(this);
     }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
 
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
