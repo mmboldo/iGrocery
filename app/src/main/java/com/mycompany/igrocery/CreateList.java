@@ -145,8 +145,7 @@ public class CreateList extends AppCompatActivity {
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {
-        Intent intent2 = new Intent(CreateList.this, ShareList.class);
-        startActivity(intent2);
+        redirectActivity(this, ShareList.class);
     }
 
     public void ClickStoreMap(View view) {

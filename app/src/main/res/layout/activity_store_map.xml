@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <include
-            layout="@layout/main_toolbar"/>
+            layout="@layout/main_toolbar" />
 
         <ImageView
             android:id="@+id/logoIV"
@@ -26,7 +26,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            app:layout_constraintTop_toBottomOf="@+id/include2" />
 
         <TextView
             android:id="@+id/registrationTitle"
@@ -99,13 +99,9 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-<<<<<<< HEAD
         android:background="@color/white">
 
-=======
-        android:background="@color/white"
-        >
->>>>>>> bec8e9453ba68311fb2b24a0208381e8d2c3cda8
+
         <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>

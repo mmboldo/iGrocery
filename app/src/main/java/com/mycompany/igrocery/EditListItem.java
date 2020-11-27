@@ -133,7 +133,7 @@ public class EditListItem extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
 
 

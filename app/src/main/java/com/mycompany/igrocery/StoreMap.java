@@ -240,13 +240,10 @@ public class StoreMap extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
-<<<<<<< HEAD
+
 
     public void ClickSearchStore(View view){
-=======
-    public void ClickSearch(View view){
->>>>>>> bec8e9453ba68311fb2b24a0208381e8d2c3cda8
-        redirectActivity(this, MapActivity.class);
+        redirectActivity(this, PermissionActivity.class);
     }
 
     public void ClickLogout(View view){

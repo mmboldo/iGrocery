@@ -48,7 +48,7 @@ public class MySharedListActivity extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
 
     public void ClickSearchStore(View view){
