@@ -229,6 +229,7 @@ public class StoreMap extends AppCompatActivity {
     public void ClickLogo(View view){
         closeDrawer(drawerLayout);
     }
+
     public static void closeDrawer(DrawerLayout drawerLayout){
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -239,10 +240,10 @@ public class StoreMap extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
-
     public void ClickSearch(View view){
         redirectActivity(this, MapActivity.class);
     }
+
     public void ClickLogout(View view){
         logout(this);
     }
@@ -289,9 +290,6 @@ public class StoreMap extends AppCompatActivity {
         //close drawer
         closeDrawer(drawerLayout);
     }
-
-    //toolbar settings
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

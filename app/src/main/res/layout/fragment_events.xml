@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    tools:context=".EventsFragment"
+    android:orientation="vertical">
 
     <ListView
         android:id="@+id/eventListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/greenIGrocery" />
+        android:layout_height="325dp"
+        android:background="@color/greenIGrocery">
+    </ListView>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/closeFragBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/darkgreencalendar"
+        android:elevation="0dp"
+        android:text="@string/close"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-</FrameLayout>
+</LinearLayout>

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -43,7 +42,7 @@ public class Login extends AppCompatActivity {
         loginBtn = (AppCompatButton)findViewById(R.id.saveBtn);
         newUserBtn = (AppCompatButton) findViewById(R.id.newUserBtn);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        goToCalendar = (AppCompatButton)findViewById(R.id.tempBtn2);
+        goToCalendar = (AppCompatButton)findViewById(R.id.closeFragBtn);
 
         //temp button only for test
 

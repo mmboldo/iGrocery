@@ -95,7 +95,6 @@
         android:layout_gravity="start"
         android:background="@color/white"
         >
-
         <include layout="@layout/main_nav_drawer" />
 
     </RelativeLayout>

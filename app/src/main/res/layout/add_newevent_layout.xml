@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="@color/greenIGrocery"
     android:orientation="vertical"
-    android:background="@color/greenIGrocery">
+    android:id="@id/addevent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/white"
-        android:hint="Type Event"
-        android:inputType="textShortMessage"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/eventname"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
         android:layout_margin="20dp"
+        android:background="@color/white"
         android:gravity="center"
-        android:id="@+id/eventname"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:hint="Type Event"
+        android:inputType="textShortMessage" />
+
+
         <ImageButton
+            android:id="@+id/seteventtime"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@mipmap/timeicon"
             android:layout_margin="10dp"
-            android:id="@+id/seteventtime"/>
+            android:background="@mipmap/timeicon" />
+
         <TextView
+            android:id="@+id/eventtime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="00:00 AM"
+            android:layout_margin="10dp"
             android:gravity="center"
-            android:textSize="30sp"
+            android:text="00:00 AM"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:id="@+id/eventtime"
-            android:layout_margin="10dp"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/addevent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@color/lightgreencalendar"
-        android:layout_gravity="center"
         android:elevation="0dp"
         android:text="@string/saveevent"
         android:textColor="#4D4D4D" />
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

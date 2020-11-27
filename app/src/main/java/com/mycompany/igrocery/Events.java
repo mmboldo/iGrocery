@@ -1,14 +1,12 @@
 package com.mycompany.igrocery;
 
 public class Events {
-    String EVENT, TIME, DATE, MONTH, YEAR, user;
+    String EVENT, TIME, DATE;
 
-    public Events(String EVENT, String TIME, String DATE, String MONTH, String YEAR) {
+    public Events(String EVENT, String TIME, String DATE) {
         this.EVENT = EVENT;
         this.TIME = TIME;
         this.DATE = DATE;
-        this.MONTH = MONTH;
-        this.YEAR = YEAR;
     }
     public Events() {
     }
@@ -37,19 +35,4 @@ public class Events {
         this.DATE = DATE;
     }
 
-    public String getMONTH() {
-        return MONTH;
-    }
-
-    public void setMONTH(String MONTH) {
-        this.MONTH = MONTH;
-    }
-
-    public String getYEAR() {
-        return YEAR;
-    }
-
-    public void setYEAR(String YEAR) {
-        this.YEAR = YEAR;
-    }
 }

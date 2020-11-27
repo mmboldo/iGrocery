@@ -84,7 +84,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/tempBtn2"
+            android:id="@+id/closeFragBtn"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
