@@ -13,12 +13,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -139,7 +135,7 @@ public class CreateList extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
     public void ClickSharedList(View view) {
-        redirectActivity(this, SharedList.class);
+        redirectActivity(this, MySharedListActivity.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link

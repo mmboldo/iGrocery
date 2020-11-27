@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SharedList extends AppCompatActivity {
+public class MySharedListActivity extends AppCompatActivity {
 
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
@@ -48,7 +48,7 @@ public class SharedList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shared_list);
+        setContentView(R.layout.activity_my_shared_list_activity);
 
         //getting information on user who is logged in
         getCurrentUser();
@@ -68,7 +68,7 @@ public class SharedList extends AppCompatActivity {
                     SharedListUser p = dataSnapshot.getValue(SharedListUser.class);
                     sharedListUser.add(p);
                 }
-                sharedListAdapter = new SharedListAdapter(SharedList.this, sharedListUser);
+                sharedListAdapter = new SharedListAdapter(MySharedListActivity.this, sharedListUser);
                 sharedList.setAdapter(sharedListAdapter);
                 sharedListAdapter.notifyDataSetChanged();
             }
@@ -121,12 +121,12 @@ public class SharedList extends AppCompatActivity {
         redirectActivity(this, Calendar.class);
     }
     public void ClickSharedList(View view) {
-        redirectActivity(this, SharedList.class);
+        redirectActivity(this, MySharedListActivity.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {
-        Intent intent2 = new Intent(SharedList.this, ShareList.class);
+        Intent intent2 = new Intent(MySharedListActivity.this, ShareList.class);
         startActivity(intent2);
     }
 
@@ -147,7 +147,7 @@ public class SharedList extends AppCompatActivity {
                 System.exit(0);*/
 
                 //Back to login page
-                Intent intent = new Intent(SharedList.this, Login.class);
+                Intent intent = new Intent(MySharedListActivity.this, Login.class);
                 activity.startActivity(intent);
             }
         });
