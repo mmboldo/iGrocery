@@ -146,7 +146,7 @@ public class CreateList extends AppCompatActivity {
     }
 
     public void ClickStoreMap(View view) {
-        redirectActivity(this, StoreMap.class);
+        redirectActivity(this, PermissionActivity.class);
     }
 
     public void logout(Activity activity) {
