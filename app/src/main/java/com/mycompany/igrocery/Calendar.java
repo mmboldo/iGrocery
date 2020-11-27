@@ -59,7 +59,6 @@ public class Calendar extends AppCompatActivity {
     //array to store the data from firebase
     ArrayList<Events> arrayEvents;
     ArrayList<String> arrayStringlist;
-    Map<String, Events> map;
 
     //fragment variable
     FragmentTransaction fragmentTransaction;
@@ -80,78 +79,10 @@ public class Calendar extends AppCompatActivity {
         seeAllEvents = (Button) findViewById(R.id.seeAllEvents);
         arrayEvents = new ArrayList<>();
         arrayStringlist = new ArrayList<>();
-        map = new Map<String, Events>() {
-            @Override
-            public int size() {
-                return 0;
-            }
-
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean containsKey(@Nullable Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsValue(@Nullable Object o) {
-                return false;
-            }
-
-            @Nullable
-            @Override
-            public Events get(@Nullable Object o) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Events put(String s, Events events) {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Events remove(@Nullable Object o) {
-                return null;
-            }
-
-            @Override
-            public void putAll(@NonNull Map<? extends String, ? extends Events> map) {
-
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @NonNull
-            @Override
-            public Set<String> keySet() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Collection<Events> values() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Set<Entry<String, Events>> entrySet() {
-                return null;
-            }
-        };
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-
                 SimpleDateFormat monthFormat = new SimpleDateFormat("MMM");
                 String monthName = monthFormat.format(month);
                 date = monthName + " " + dayOfMonth + ", " + year;
@@ -182,7 +113,6 @@ public class Calendar extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayEvents.clear();
                 arrayStringlist.clear();
-                map.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Events eachEvent = dataSnapshot.getValue(Events.class);
                     arrayEvents.add(eachEvent);
