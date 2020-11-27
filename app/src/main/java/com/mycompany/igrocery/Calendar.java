@@ -13,6 +13,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
+
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -286,11 +289,7 @@ public class Calendar extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.top_navigation, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+
 
 
 }

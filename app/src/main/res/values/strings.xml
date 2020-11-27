@@ -22,7 +22,7 @@
     <string name="passErrorConfir">Password does not match.</string>
     <string name="loginError">Something wrong. Please, check your email and Password.</string>
     <string name="groceryList">Grocery List</string>
-    <string name="SelectStore">Select your favorite grocery store</string>
+    <string name="SelectStore">Select a grocery store</string>
     <string name="newGroceryItem">Add a new item</string>
     <string name="editGroceryItem">Edit grocery item</string>
 
@@ -32,6 +32,7 @@
     <string name="password">Password</string>
     <string name="save">save</string>
     <string name="seeMapStoreBtn">See Map</string>
+    <string name="goToStoreSelection">Select Store</string>
 
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
@@ -69,4 +70,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="seeAllEvents">See All Events</string>
+    <string name="ShareListButton">Share</string>
 </resources>

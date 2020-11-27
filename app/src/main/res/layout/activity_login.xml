@@ -64,7 +64,7 @@
             android:textColor="#4D4D4D" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/saveBtn"
+            android:id="@+id/btn_ShareList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#66CD00"

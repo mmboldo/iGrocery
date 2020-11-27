@@ -26,7 +26,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_events" />
 
-
         <ImageView
             android:id="@+id/logoIV"
             android:layout_width="150dp"
