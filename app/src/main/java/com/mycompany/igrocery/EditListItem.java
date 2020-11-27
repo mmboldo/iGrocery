@@ -133,15 +133,19 @@ public class EditListItem extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
 
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, MapActivity.class);
     }
     public void ClickLogout(View view){
         logout(this);
+    }
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
     }
 
     public void ClickCalendar(View view) {

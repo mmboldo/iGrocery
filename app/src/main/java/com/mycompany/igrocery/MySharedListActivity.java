@@ -88,8 +88,6 @@ public class MySharedListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
     }
-
-
     // START: Methods for Nav menu
     public void ClickMenu(View view){
         openDrawer(drawerLayout);
@@ -109,19 +107,22 @@ public class MySharedListActivity extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        recreate();
+        redirectActivity(this, CreateList.class);
     }
-    public void ClickSearch(View view){
+
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
         logout(this);
     }
+
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
-    public void ClickSharedList(View view) {
-        redirectActivity(this, MySharedListActivity.class);
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
+        redirectActivity(this, StoreMap.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link

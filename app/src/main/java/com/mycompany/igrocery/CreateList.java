@@ -13,8 +13,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -124,7 +128,7 @@ public class CreateList extends AppCompatActivity {
         recreate();
     }
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
@@ -134,14 +138,14 @@ public class CreateList extends AppCompatActivity {
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
-    public void ClickSharedList(View view) {
+    //My Shared List for Edurado
+    public void ClickMyShared(View view) {
         redirectActivity(this, MySharedListActivity.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {
-        Intent intent2 = new Intent(CreateList.this, ShareList.class);
-        startActivity(intent2);
+        redirectActivity(this, ShareList.class);
     }
 
     public void ClickStoreMap(View view) {
