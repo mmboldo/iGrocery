@@ -3,8 +3,11 @@ package com.mycompany.igrocery;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -24,6 +27,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 public class PermissionActivity extends AppCompatActivity {
     private Button btnGrant;
+    //Initialize Drawer Navigation variable
+    DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,5 +81,93 @@ public class PermissionActivity extends AppCompatActivity {
                         }).check();
             }
         });
+
+        //Drawer Navigation
+        drawerLayout = findViewById(R.id.drawer_layout);
     }
+
+        /*
+    Drawer Navigation
+     */
+
+    public void ClickMenu(View view){
+        openDrawer(drawerLayout);
+    }
+
+    public static void openDrawer(DrawerLayout drawerLayout) {
+        drawerLayout.openDrawer(GravityCompat.START);
+    }
+
+    public void ClickLogo(View view){
+        closeDrawer(drawerLayout);
+    }
+    public static void closeDrawer(DrawerLayout drawerLayout){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+    public void ClickList(View view){
+        redirectActivity(this, CreateList.class);
+    }
+
+
+    public void ClickSearchStore(View view){
+        redirectActivity(this, PermissionActivity.class);
+    }
+    public void ClickLogout(View view){
+        logout(this);
+    }
+
+    public void ClickCalendar(View view) {
+        redirectActivity(this, Calendar.class);
+    }
+
+    public void ClickStoreMap(View view) {
+        redirectActivity(this, StoreMap.class);
+    }
+
+    public void logout(Activity activity) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout ?");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                //quit the iGrocery app
+                /*activity.finishAffinity();
+                System.exit(0);*/
+
+                //Back to login page
+                Intent intent = new Intent(PermissionActivity.this, Login.class);
+                activity.startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    public static void redirectActivity(Activity activity, Class aclass) {
+        Intent intent = new Intent(activity, aclass);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        activity.startActivity(intent);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //close drawer
+        closeDrawer(drawerLayout);
+    }
+
+    //toolbar settings
+
+
 }

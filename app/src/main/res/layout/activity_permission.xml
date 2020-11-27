@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="32dp">
+    tools:context=".PermissionActivity">
 
-    <LinearLayout
-
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:padding="32dp"
+        tools:context=".PermissionActivity">
 
-        <ImageView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo"/>
-        <TextView
-            android:layout_width="wrap_content"
+        <include
+            layout="@layout/main_toolbar"/>
+        <LinearLayout
+
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Permission Request"
-            android:textSize="24sp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif-condensed"
-            android:textStyle="bold"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="sans-serif-condensed"
+                android:text="Permission Request"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                android:text="IGrocery needs to be permitted to use Google Map Service" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_grant"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="IGrocery needs to be permitted to use Google Map Service"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="36dp"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_grant"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:textColor="#FFFFFF"
-        android:text="Grant Permission"
-        app:backgroundTint = "#66CD00"
-        android:textAllCaps="false"/>
-</RelativeLayout>
+            android:layout_alignParentBottom="true"
+            android:text="Grant Permission"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="#66CD00" />
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

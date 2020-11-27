@@ -137,7 +137,7 @@ public class EditListItem extends AppCompatActivity {
     }
 
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, MapActivity.class);
     }
     public void ClickLogout(View view){

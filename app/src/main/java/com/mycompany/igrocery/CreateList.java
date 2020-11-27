@@ -128,7 +128,7 @@ public class CreateList extends AppCompatActivity {
         recreate();
     }
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){

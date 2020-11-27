@@ -203,7 +203,7 @@ public class Calendar extends AppCompatActivity {
         });
 
         //Drawer Navigation
-        drawerLayout = findViewById(R.id.calendar_layout);
+        drawerLayout = findViewById(R.id.drawer_layout);
 
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar_view);
@@ -255,7 +255,7 @@ public class Calendar extends AppCompatActivity {
     }
 
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, MapActivity.class);
     }
     public void ClickLogout(View view){
