@@ -43,7 +43,7 @@ public class AddGroceryItem extends AppCompatActivity {
     public void getCurrentUser() {
 
         String sharedUser = getIntent().getStringExtra("listOwner");
-        Toast.makeText(this, sharedUser, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, sharedUser, Toast.LENGTH_SHORT).show();
 
         if(sharedUser != null){
             userEmail = sharedUser;
