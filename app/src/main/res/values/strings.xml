@@ -33,7 +33,7 @@
     <string name="save">save</string>
     <string name="seeMapStoreBtn">See Map</string>
     <string name="goToStoreSelection">Select Store</string>
-    <string name="sharedList">Shared List</string>
+    <string name="sharedList">Lists Shared With Me:</string>
 
     <string-array name="store_names">
         <item>Real Canadian Superstore</item>
