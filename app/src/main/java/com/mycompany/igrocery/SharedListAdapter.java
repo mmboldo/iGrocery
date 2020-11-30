@@ -1,6 +1,7 @@
 package com.mycompany.igrocery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,18 @@ public class SharedListAdapter extends RecyclerView.Adapter<SharedListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.sharedItemTitle.setText(sharedListUser.get(position).getListOwner());
+
+        String listOwner = sharedListUser.get(position).getListOwner();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CreateList.class);
+                //intent.putExtra("userEmail", getEmail);
+                intent.putExtra("listOwner", listOwner);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
