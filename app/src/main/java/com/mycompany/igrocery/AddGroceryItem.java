@@ -102,6 +102,7 @@ public class AddGroceryItem extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
+                intent.putExtra("listOwner", userEmail);
                 startActivity(intent);
             }
         });
