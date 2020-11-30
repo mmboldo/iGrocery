@@ -2,20 +2,21 @@ package com.mycompany.igrocery;
 
 public class SharedListUser {
 
-    String email;
+
+    String listOwner;
 
     public SharedListUser() {
     }
 
-    public SharedListUser(String email) {
-        this.email = email;
+    public SharedListUser(String listOwner) {
+        this.listOwner = listOwner;
     }
 
-    public String getEmail() {
-        return email;
+    public String getListOwner() {
+        return listOwner;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setListOwner(String listOwner) {
+        this.listOwner = listOwner;
     }
 }
