@@ -73,7 +73,7 @@ public class CreateList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateList.this, AddGroceryItem.class);
-                intent.putExtra("userEmail", userEmail);
+                intent.putExtra("listOwner", userEmail);
                 startActivity(intent);
             }
         });
