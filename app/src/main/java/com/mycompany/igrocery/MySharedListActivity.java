@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class MySharedListActivity extends AppCompatActivity {
     RecyclerView sharedList; //ourdoes
     ArrayList<SharedListUser> sharedListUser; //list
     SharedListAdapter sharedListAdapter;
+    TextView sharedItemTitle2;
 
     private FirebaseUser user;
     private String userEmail;
@@ -57,23 +59,26 @@ public class MySharedListActivity extends AppCompatActivity {
         sharedList = findViewById(R.id.rvSharedList);
         sharedList.setLayoutManager(new LinearLayoutManager(this));
         sharedListUser = new ArrayList<SharedListUser>();
+        //sharedItemTitle2 = findViewById(R.id.sharedItemTitle2);
 
         //get data from firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("ListsPermissions").child(userEmail);
+        reference = FirebaseDatabase.getInstance().getReference().child("ListsPermissions").child("userEmail: " + userEmail);
         reference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //set code to retrieve data and replace layout
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     SharedListUser p = dataSnapshot.getValue(SharedListUser.class);
                     sharedListUser.add(p);
-                    Toast.makeText(MySharedListActivity.this, "ShareList Size: "+sharedListUser.size(), Toast.LENGTH_SHORT).show();
                 }
-
+                Toast.makeText(MySharedListActivity.this, "size: " + sharedListUser.get(0).toString(), Toast.LENGTH_LONG).show();
+                //sharedItemTitle2.setText(sharedListUser.get(0).toString());
                 sharedListAdapter = new SharedListAdapter(MySharedListActivity.this, sharedListUser);
                 sharedList.setAdapter(sharedListAdapter);
                 sharedListAdapter.notifyDataSetChanged();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
