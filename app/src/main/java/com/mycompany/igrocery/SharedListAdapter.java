@@ -29,7 +29,7 @@ public class SharedListAdapter extends RecyclerView.Adapter<SharedListAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.sharedItemTitle.setText(sharedListUser.get(position).getEmail());
+        holder.sharedItemTitle.setText(sharedListUser.get(position).getListOwner());
     }
 
     @Override
