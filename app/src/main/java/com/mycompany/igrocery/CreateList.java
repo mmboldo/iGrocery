@@ -50,7 +50,6 @@ public class CreateList extends AppCompatActivity {
 
         //getting intent
         String listOwner = getIntent().getStringExtra("listOwner");
-        //Toast.makeText(this, listOwner, Toast.LENGTH_SHORT).show();
 
         if(listOwner != null){
             userEmail = listOwner.replace(".", "&");

@@ -72,8 +72,6 @@ public class MySharedListActivity extends AppCompatActivity {
                     SharedListUser p = dataSnapshot.getValue(SharedListUser.class);
                     sharedListUser.add(p);
                 }
-                Toast.makeText(MySharedListActivity.this, "size: " + sharedListUser.get(0).toString(), Toast.LENGTH_LONG).show();
-                //sharedItemTitle2.setText(sharedListUser.get(0).toString());
                 sharedListAdapter = new SharedListAdapter(MySharedListActivity.this, sharedListUser);
                 sharedList.setAdapter(sharedListAdapter);
                 sharedListAdapter.notifyDataSetChanged();
