@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ public class SharedList extends AppCompatActivity {
     RecyclerView sharedList; //ourdoes
     ArrayList<SharedListUser> sharedListUser; //list
     SharedListAdapter sharedListAdapter;
+    TextView sharedItemTitle2;
 
     private FirebaseUser user;
     private String userEmail;
@@ -57,6 +59,7 @@ public class SharedList extends AppCompatActivity {
         sharedList = findViewById(R.id.rvSharedList);
         sharedList.setLayoutManager(new LinearLayoutManager(this));
         sharedListUser = new ArrayList<SharedListUser>();
+        sharedItemTitle2 = findViewById(R.id.sharedItemTitle2);
 
         //get data from firebase
         reference = FirebaseDatabase.getInstance().getReference().child("ListsPermissions").child("userEmail: " + userEmail);
@@ -68,10 +71,13 @@ public class SharedList extends AppCompatActivity {
                     SharedListUser p = dataSnapshot.getValue(SharedListUser.class);
                     sharedListUser.add(p);
                 }
+                //Toast.makeText(SharedList.this, "size: " + sharedListUser.toString(), Toast.LENGTH_SHORT).show();
+                //sharedItemTitle2.setText(sharedListUser);
                 sharedListAdapter = new SharedListAdapter(SharedList.this, sharedListUser);
                 sharedList.setAdapter(sharedListAdapter);
                 sharedListAdapter.notifyDataSetChanged();
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

@@ -1,6 +1,7 @@
 package com.mycompany.igrocery;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,18 @@ public class SharedListAdapter extends RecyclerView.Adapter<SharedListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.sharedItemTitle.setText(sharedListUser.get(position).getEmail());
+
+        String getEmail = sharedListUser.get(position).getEmail();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, CreateList.class);
+                intent.putExtra("userEmail", getEmail);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -37,7 +50,7 @@ public class SharedListAdapter extends RecyclerView.Adapter<SharedListAdapter.My
         return sharedListUser.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
 
         TextView sharedItemTitle;
 
