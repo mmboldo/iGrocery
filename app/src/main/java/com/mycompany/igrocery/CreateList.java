@@ -47,8 +47,18 @@ public class CreateList extends AppCompatActivity {
     private String userEmail;
 
     public void getCurrentUser() {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userEmail = user.getEmail().replace(".", "&");
+
+        //getting intent
+        String listOwner = getIntent().getStringExtra("listOwner");
+        //Toast.makeText(this, listOwner, Toast.LENGTH_SHORT).show();
+
+        if(listOwner != null){
+            userEmail = listOwner.replace(".", "&");
+        }
+        else{
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            userEmail = user.getEmail().replace(".", "&");
+        }
     }
 
     @Override
@@ -63,6 +73,7 @@ public class CreateList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CreateList.this, AddGroceryItem.class);
+                intent.putExtra("userEmail", userEmail);
                 startActivity(intent);
             }
         });

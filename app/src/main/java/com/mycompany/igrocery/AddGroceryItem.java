@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,12 +42,11 @@ public class AddGroceryItem extends AppCompatActivity {
 
     public void getCurrentUser() {
 
-        Intent i = getIntent();
-        String sharedUser = i.getStringExtra("userEmail");
+        String sharedUser = getIntent().getStringExtra("userEmail");
+        Toast.makeText(this, sharedUser, Toast.LENGTH_SHORT).show();
 
         if(sharedUser != null){
-            //reference = FirebaseDatabase.getInstance().getReference().child(("GroceryList")).child("userEmail: " + userEmail).child("GroceryItem"+itemNum);
-            userEmail = sharedUser.replace(".", "&");
+            userEmail = sharedUser;
             sharing = true;
         }
         else{
@@ -87,7 +87,7 @@ public class AddGroceryItem extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Intent intent = new Intent(AddGroceryItem.this, CreateList.class);
 
-                        intent.putExtra("userEmail", userEmail);
+                        intent.putExtra("listOwner", userEmail);
 
                         startActivity(intent);
                     }
