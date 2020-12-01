@@ -53,8 +53,7 @@ public class EditListItem extends AppCompatActivity {
             user = FirebaseAuth.getInstance().getCurrentUser();
             userEmail = user.getEmail().replace(".", "&");
         }
-        Toast.makeText(this, userEmail, Toast.LENGTH_SHORT).show();
-
+        //Toast.makeText(this, userEmail, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -156,10 +155,10 @@ public class EditListItem extends AppCompatActivity {
         //redirectActivity(this, CreateList.class);
     }
 
-
     public void ClickSearchStore(View view){
-        redirectActivity(this, MapActivity.class);
+        redirectActivity(this, PermissionActivity.class);
     }
+
     public void ClickLogout(View view){
         logout(this);
     }
@@ -171,6 +170,10 @@ public class EditListItem extends AppCompatActivity {
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
     public void shareMyList(View view) {
         redirectActivity(this, ShareList.class);
+    }
+
+    public void ClickStoreMap(View view) {
+        redirectActivity(this, StoreMap.class);
     }
 
     public void ClickCalendar(View view) {

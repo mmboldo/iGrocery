@@ -115,6 +115,10 @@ public class ShareList extends AppCompatActivity {
         logout(this);
     }
 
+    public void ClickMyShared(View view) {
+        redirectActivity(this, MySharedListActivity.class);
+    }
+
     public void ClickCalendar(View view) {
         redirectActivity(this, Calendar.class);
     }
