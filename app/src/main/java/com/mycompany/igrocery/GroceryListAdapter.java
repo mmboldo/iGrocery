@@ -1,5 +1,6 @@
 package com.mycompany.igrocery;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -42,12 +43,17 @@ public class GroceryListAdapter extends RecyclerView.Adapter<GroceryListAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditListItem.class);
+                Intent intent = new Intent(v.getContext(), EditListItem.class);
+                Intent userIntent = ((Activity)v.getContext()).getIntent();
+                String listOwner = userIntent.getStringExtra("listOwner");
+                intent.putExtra("listOwner", listOwner);
+
+                //Intent intent = new Intent(context, EditListItem.class);
                 intent.putExtra("itemTitle", getItemTitle);
                 intent.putExtra("itemDescription", getItemDescription);
                 intent.putExtra("itemQuantity", getItemQuantity);
                 intent.putExtra("itemKey", getItemKey);
-                context.startActivity(intent);
+                v.getContext().startActivity(intent);
             }
         });
     }
