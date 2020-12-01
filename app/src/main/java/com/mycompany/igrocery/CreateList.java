@@ -135,7 +135,12 @@ public class CreateList extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        recreate();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userEmail = user.getEmail().replace(".", "&");
+        Intent intent = new Intent(this, CreateList.class);
+        intent.putExtra("listOwner", userEmail);
+        startActivity(intent);
+        //redirectActivity(this, CreateList.class);
     }
 
     public void ClickSearchStore(View view){

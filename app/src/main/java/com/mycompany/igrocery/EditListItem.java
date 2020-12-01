@@ -153,7 +153,6 @@ public class EditListItem extends AppCompatActivity {
         Intent intent = new Intent(this, CreateList.class);
         intent.putExtra("listOwner", userEmail);
         startActivity(intent);
-
         //redirectActivity(this, CreateList.class);
     }
 
@@ -167,6 +166,11 @@ public class EditListItem extends AppCompatActivity {
     //My Shared List for Edurado
     public void ClickMyShared(View view) {
         redirectActivity(this, MySharedListActivity.class);
+    }
+
+    // This adds the navigation functionality for the main_nav_drawer Share my list menu link
+    public void shareMyList(View view) {
+        redirectActivity(this, ShareList.class);
     }
 
     public void ClickCalendar(View view) {
