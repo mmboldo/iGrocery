@@ -42,8 +42,20 @@ public class EditListItem extends AppCompatActivity {
     DrawerLayout drawerLayout;
 
     public void getCurrentUser() {
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        userEmail = user.getEmail().replace(".", "&");    }
+
+        //getting intent
+        String listOwner = getIntent().getStringExtra("listOwner");
+
+        if(listOwner != null){
+            userEmail = listOwner.replace(".", "&");
+        }
+        else{
+            user = FirebaseAuth.getInstance().getCurrentUser();
+            userEmail = user.getEmail().replace(".", "&");
+        }
+        Toast.makeText(this, userEmail, Toast.LENGTH_SHORT).show();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +75,7 @@ public class EditListItem extends AppCompatActivity {
         final String key = getIntent().getStringExtra("itemKey");
         getCurrentUser();
 
+
         btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +85,7 @@ public class EditListItem extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Intent a = new Intent(EditListItem.this, CreateList.class);
+                        a.putExtra("listOwner", userEmail);
                         startActivity(a);
                         finish();
                     }
@@ -93,6 +107,7 @@ public class EditListItem extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Intent intent = new Intent(EditListItem.this, CreateList.class);
+                        intent.putExtra("listOwner", userEmail);
                         startActivity(intent);
                         finish();
                     }
@@ -133,7 +148,13 @@ public class EditListItem extends AppCompatActivity {
     }
 
     public void ClickList(View view){
-        redirectActivity(this, CreateList.class);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userEmail = user.getEmail().replace(".", "&");
+        Intent intent = new Intent(this, CreateList.class);
+        intent.putExtra("listOwner", userEmail);
+        startActivity(intent);
+
+        //redirectActivity(this, CreateList.class);
     }
 
 
