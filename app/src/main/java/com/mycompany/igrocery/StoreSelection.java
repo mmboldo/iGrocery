@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class StoreSelection extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class StoreSelection extends AppCompatActivity {
     int images[] = {R.drawable.superstore_logo, R.drawable.saveonfoods_logo, R.drawable.walmart_logo};
     //Initialize Drawer Navigation variable
     DrawerLayout drawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,10 @@ public class StoreSelection extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar_view);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
+
+
+
+
     }
 
 
@@ -133,6 +139,7 @@ public class StoreSelection extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
     // FINISH: Methods for Nav menu
+
 
 
 }
