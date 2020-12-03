@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,8 +28,6 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
 
     String data1[];
     int images[];
-    String latitude;
-    String longitude;
     Context context;
     GroceryStore superstore = new GroceryStore("Real Canadian Superstore", "4700 Kingsway, Burnaby", "49.22615", "-122.999113");
     GroceryStore saveOnFoods = new GroceryStore("Save On Foods", "4469 Kingsway, Burnaby", "49.231050", "-123.004530");
@@ -64,6 +63,7 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
 
                 if (position == 0) {
                     showDialog(position);
+
                 }
                 if (position == 1) {
                     showDialog(position);
@@ -122,14 +122,15 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialog.dismiss();
-                addExtra(position);
+                initialGoogleMap(position);
+
             }
         });
         builder.setNegativeButton("iGrocery Map", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialog.dismiss();
-                initialGoogleMap(position);
+                addExtra(position);
             }
         });
 
@@ -150,8 +151,8 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
 
     //Initial Google map
     public void initialGoogleMap(int position) {
-        latitude = list.get(position).getLatitude();
-        longitude = list.get(position).getLongitude();
+        String latitude = list.get(position).getLatitude();
+        String longitude = list.get(position).getLongitude();
         Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
