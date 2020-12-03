@@ -58,37 +58,9 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         holder.iv.setImageResource(images[position]);
 
 
-//        holder.tv.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//
-//                if(position == 0){
-//                    latitude = superstore.getLatitude();
-//                    longitude = superstore.getLongitude();
-//                }
-//                if(position == 1){
-//                    latitude = saveOnFoods.getLatitude();
-//                    longitude = saveOnFoods.getLongitude();
-//
-//                }
-//                if(position == 2){
-//                    latitude = walmart.getLatitude();
-//                    longitude = walmart.getLongitude();
-//
-//                }
-//
-//                Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," + longitude);
-//                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-//                mapIntent.setPackage("com.google.android.apps.maps");
-//                context.startActivity(mapIntent);
-//            }
-//
-//        });
-
-        holder.iv.setOnClickListener(new View.OnClickListener() {
+        holder.tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 if (position == 0) {
                     showDialog(position);
@@ -99,8 +71,23 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
                 if (position == 2) {
                     showDialog(position);
                 }
-                //intent.putExtra("store", data1[position]);
-                //Toast.makeText(context, data1[position], Toast.LENGTH_LONG).show();
+
+            }
+
+        });
+
+        holder.iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position == 0) {
+                    showDialog(position);
+                }
+                if (position == 1) {
+                    showDialog(position);
+                }
+                if (position == 2) {
+                    showDialog(position);
+                }
 
             }
 
@@ -160,6 +147,7 @@ public class StoreSelectionAdapter extends RecyclerView.Adapter<StoreSelectionAd
         intent.putExtra("storeLongitude", list.get(position).getLongitude());
         context.startActivity(intent);
     }
+
     //Initial Google map
     public void initialGoogleMap(int position) {
         latitude = list.get(position).getLatitude();
