@@ -89,6 +89,7 @@ public class CreateList extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // retrieve data and create layout
+                list.clear();
 
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     GroceryList p = dataSnapshot.getValue(GroceryList.class);
@@ -96,6 +97,8 @@ public class CreateList extends AppCompatActivity {
                 }
 
                 groceryListAdapter = new GroceryListAdapter(CreateList.this, list);
+
+                groceryList.refreshDrawableState();
                 groceryList.setAdapter(groceryListAdapter);
                 groceryListAdapter.notifyDataSetChanged();
             }
@@ -106,6 +109,8 @@ public class CreateList extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No Data", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
         //Drawer Navigation
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -207,6 +212,5 @@ public class CreateList extends AppCompatActivity {
         closeDrawer(drawerLayout);
     }
     // FINISH: Methods for Nav menu
-
 
 }

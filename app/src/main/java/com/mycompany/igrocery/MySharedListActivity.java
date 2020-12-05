@@ -34,7 +34,7 @@ public class MySharedListActivity extends AppCompatActivity {
 
     //Initialize variables
     DatabaseReference reference;
-    RecyclerView sharedList; //ourdoes
+    RecyclerView sharedList;
     ArrayList<SharedListUser> sharedListUser; //list
     SharedListAdapter sharedListAdapter;
     TextView sharedItemTitle2;
