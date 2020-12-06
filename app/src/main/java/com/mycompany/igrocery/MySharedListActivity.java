@@ -127,7 +127,7 @@ public class MySharedListActivity extends AppCompatActivity {
     }
     //My Shared List for Edurado
     public void ClickMyShared(View view) {
-        redirectActivity(this, StoreMap.class);
+        redirectActivity(this, MySharedListActivity.class);
     }
 
     // This adds the navigation functionality for the main_nav_drawer Share my list menu link
