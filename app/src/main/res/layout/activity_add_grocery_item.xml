@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="-40dp">
+        android:layout_marginTop="-30dp">
 
         <LinearLayout
             android:layout_marginRight="16dp"
@@ -50,26 +50,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/addTitle"
-                android:textSize="20sp"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:text="Name"
-                android:layout_marginBottom="10dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/itemInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <EditText
+                android:layout_height="wrap_content"
+                android:hint="Item">
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/addItemTitle"
                 android:inputType="text"
-                android:background="@drawable/bginputtextitem"
-                android:paddingLeft="12dp"
-                android:maxLength="25"
-                android:textColorHint="#B5B5B5"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:hint="What do you need?"
                 android:layout_width="match_parent"
-                android:layout_height="45dp" />
+                android:layout_height="wrap_content"
+                android:hint="Item"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
         </LinearLayout>
 
@@ -81,26 +76,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/addDescription"
-                android:textSize="20sp"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:text="Description"
-                android:layout_marginBottom="10dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/itemDescriptionInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Item description">
 
-            <EditText
-                android:id="@+id/addItemDescription"
-                android:inputType="text"
-                android:background="@drawable/bginputtextitem"
-                android:paddingLeft="12dp"
-                android:maxLength="25"
-                android:textColorHint="#B5B5B5"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:hint="Describe it"
-                android:layout_width="match_parent"
-                android:layout_height="45dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addItemDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Item description"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -112,55 +101,49 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/addQuantity"
-                android:textSize="20sp"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:text="Quantity"
-                android:layout_marginBottom="10dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/itemQuantityInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:hint="Item quantity">
 
-            <EditText
-                android:id="@+id/addItemQuantity"
-                android:inputType="text"
-                android:background="@drawable/bginputtextitem"
-                android:paddingLeft="12dp"
-                android:maxLength="10"
-                android:textColorHint="#B5B5B5"
-                android:textColor="@color/design_default_color_primary_dark"
-                android:hint="How much do you need?"
-                android:layout_width="match_parent"
-                android:layout_height="45dp" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addItemQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Item quantity"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginRight="16dp"
-        android:background="@drawable/bgbtnsave"
-        android:text="Save"
-        android:textAllCaps="false"
-        android:textColor="#FFF"
-        android:textSize="22sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginLeft="26dp"
+        android:background="#66CD00"
+        android:elevation="0dp"
+        android:text="Add Item"
+        android:textColor="#4D4D4D"
+        />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCancel"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="14dp"
-        android:text="Cancel"
-        android:textColor="#AFAFAF"
-        android:textAllCaps="false"
-        android:background="@drawable/bgbtncancel"
-        android:textSize="22sp"
         android:layout_width="match_parent"
-        android:layout_height="55dp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginLeft="26dp"
+        android:background="#66CD00"
+        android:elevation="0dp"
+        android:text="Cancel"
+        android:textColor="#4D4D4D"/>
 
 </LinearLayout>
+
