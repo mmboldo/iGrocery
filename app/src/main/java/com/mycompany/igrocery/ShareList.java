@@ -108,7 +108,7 @@ public class ShareList extends AppCompatActivity {
         redirectActivity(this, CreateList.class);
     }
 
-    public void ClickSearch(View view){
+    public void ClickSearchStore(View view){
         redirectActivity(this, PermissionActivity.class);
     }
     public void ClickLogout(View view){
