@@ -34,7 +34,7 @@ public class EditListItem extends AppCompatActivity {
     Button btnSaveUpdate, btnDelete;
     DatabaseReference mDatabaseReference;
 
-    private FirebaseAuth.AuthStateListener authListener;
+    //private FirebaseAuth.AuthStateListener authListener;
     private FirebaseUser user; //Firebase obj
     private String userEmail, eventName;
 
